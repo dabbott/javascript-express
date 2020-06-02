@@ -2,16 +2,28 @@ import arrayType from '../../examples/files/types/arrayType.ts'
 import objectType from '../../examples/files/types/objectType.ts'
 import functionType from '../../examples/files/types/functionType.ts'
 
-# Reference Types
+# Object Types
 
-Everything that isn't a primitive type is a reference type. 
+Everything that isn't a primitive type is an object type. 
 
-The main differences are: 
+Object types are **mutable** and passed to functions **by reference** (i.e. modifying the value within a function modifies original).
 
-- Primitive types are **immutable**, while reference types are **mutable** 
-- Primitive types are passed to functions **by value** (a copy of the data), while reference types are passed **by reference** (the original).
+There are 3 extremely common built-in object types: `Object`, `Array`, and `Function`.
 
-There are 3 extremely common built-in reference types: `Array`, `Object`, and `Function`.
+---
+
+## Objects
+
+The `Object` type is the base class of all other object types.
+
+Objects are associative arrays (a.k.a maps or dictionaries). We use object literal syntax to declare objects.
+
+> Objects are used extensively throughout JavaScript, both in the standard library and implementation of OOP (classes, inheritance, etc).
+
+<Example
+  title={"Objects"}
+  code={objectType}
+/>
 
 ---
 
@@ -26,22 +38,9 @@ We use array literal syntax to declare arrays:
 
 ---
 
-## Objects
-
-Objects are associative arrays (a.k.a maps or dictionaries). We use object literal syntax to declare objects.
-
-> Objects are used extensively throughout JavaScript, both in the standard library and implementation of OOP (classes, inheritance, etc).
-
-<Example
-  title={"Objects"}
-  code={objectType}
-/>
-
----
-
 ## Functions
 
-Functions are reference types. They can assigned to variables and passed as arguments to other functions.
+Functions are object types. They can assigned to variables and passed as arguments to other functions.
 
 There are two ways to declare functions:
 

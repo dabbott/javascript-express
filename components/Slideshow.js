@@ -48,6 +48,14 @@ const styles = {
     textDecoration: 'underline',
     textDecorationColor: theme.colors.quaternary,
   },
+  em: {
+    fontStyle: 'italic',
+    color: theme.colors.secondary,
+    textDecoration: 'underline',
+  },
+  strong: {
+    fontWeight: 'bold',
+  },
 }
 
 export default dynamic(
@@ -68,41 +76,12 @@ export default dynamic(
         ...mdxComponentMap,
         Example: props => <EditorConsole variant="slides" {...props} />,
         table: props => <table {...props} style={{ margin: '16px' }} />,
-        // td: props => <td {...props} style={{ padding: '4px' }} />,
         th: props => <th {...props} style={{ padding: '4px' }} />,
         h2: props => <mdxComponentMap.h2 {...props} style={styles.heading} />,
         h1: props => <mdxComponentMap.h1 {...props} style={styles.heading} />,
         blockquote: props => null,
-        // blockquote: props => {
-        //   console.log('code', props)
-        //   return (
-        //     <blockquote
-        //       style={{
-        //         opacity: 0.5,
-        //         borderLeft: `2px solid ${theme.colors.secondary}`,
-        //         padding: 0,
-        //         marginLeft: theme.space[1],
-        //         marginBottom: theme.space[2],
-        //       }}
-        //       {...props}
-        //     />
-        //   )
-        // },
-        code: props => {
-          console.log('code', props)
-          return <code {...props} style={{ backgroundColor: 'teal' }} />
-        },
-        strong: props => <strong {...props} style={{ fontWeight: 'bold' }} />,
-        em: props => (
-          <em
-            {...props}
-            style={{
-              fontStyle: 'italic',
-              color: theme.colors.secondary,
-              textDecoration: 'underline',
-            }}
-          />
-        ),
+        strong: props => <strong {...props} style={styles.strong} />,
+        em: props => <em {...props} style={styles.em} />,
       }
 
       console.log(components)

@@ -26,7 +26,7 @@ let sections = [
 
   createSection('Types'),
   createSection('Types', 'Primitive Types'),
-  createSection('Types', 'Reference Types'),
+  createSection('Types', 'Object Types'),
   createSection('Types', 'Library Types'),
   createSection('Types', 'Nullability'),
   createSection('Types', 'Type Names'),

@@ -6,7 +6,7 @@ console.log(false === 0)
 
 console.log(null === undefined)
 
-// Reference types
+// Objects
 
 const myArray = ['a']
 
