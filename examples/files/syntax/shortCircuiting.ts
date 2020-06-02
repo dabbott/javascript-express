@@ -7,3 +7,5 @@ console.log(myNumber)
 console.log(true || myNumber++)
 
 console.log(myNumber)
+
+export {}

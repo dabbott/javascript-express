@@ -6,6 +6,7 @@ yarn-error.log
 
 # Build directory
 /public
+/out
 .DS_Store
 
 # Editors

@@ -7,3 +7,5 @@ const myConstant = [1, 2, 3]
 myConstant.push(4)
 
 console.log(myConstant)
+
+export {}

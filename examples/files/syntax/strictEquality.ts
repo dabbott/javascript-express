@@ -17,3 +17,5 @@ console.log(myArray === ['a'])
 // Other
 
 console.log(NaN === NaN) // Hmm...
+
+export {}

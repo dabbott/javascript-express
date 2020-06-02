@@ -14,7 +14,7 @@
     "disqus-react": "^1.0.5",
     "global": "^4.4.0",
     "graphql": "^0.13.0",
-    "next": "^8.1.0",
+    "next": "^9.4.4",
     "next-images": "^1.1.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.6",
@@ -28,7 +28,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start -p $PORT",
     "format": "prettier --write '**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -5,3 +5,5 @@ console.log(myArray.slice(2))
 console.log(myArray.slice(1, 3))
 
 console.log(myArray.slice(0, -2))
+
+export {}

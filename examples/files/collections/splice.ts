@@ -11,3 +11,5 @@ console.log(myArray)
 myArray.splice(3, 2, 43, 44)
 
 console.log(myArray)
+
+export {}
