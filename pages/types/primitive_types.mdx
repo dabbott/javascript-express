@@ -1,4 +1,3 @@
-import EditorConsole from '../../components/EditorConsole'
 import literals from '!raw-loader!../../examples/files/types/literals.ts'
 import primitiveConstructors from '!raw-loader!../../examples/files/types/primitiveConstructors.ts'
 import primitiveMethods from '!raw-loader!../../examples/files/types/primitiveMethods.ts'
@@ -23,7 +22,7 @@ There are 6 primitive types:
 
 We declare primitive types using... primitive values (i.e. literals).
 
-<EditorConsole   
+<Example   
   title={"Literal values"}
   code={literals}
 />
@@ -34,7 +33,7 @@ We declare primitive types using... primitive values (i.e. literals).
 
 It's also possible to instantiate the built-in types using their constructors — however, this is relatively uncommon and not idiomatic for common usage.
 
-<EditorConsole 
+<Example 
   title={'Constructor functions'}
   code={primitiveConstructors}
 />
@@ -47,7 +46,7 @@ We use standard library methods for manipulating primitives. These are available
 
 > JavaScript uses _autoboxing_ to make these methods available even on literal values.
 
-<EditorConsole 
+<Example 
   title={'Standard library methods'}
   code={primitiveMethods}
 />
@@ -58,7 +57,7 @@ We use standard library methods for manipulating primitives. These are available
 
 There are library methods for casting strings to numbers and vice versa:
 
-<EditorConsole 
+<Example 
   title={'Type casting'}
   code={primitiveCasting}
 />

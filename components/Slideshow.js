@@ -1,7 +1,7 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import dynamic from 'next/dynamic'
-import { ThemeContext } from './EditorConsole'
+import EditorConsole, { ThemeContext } from './EditorConsole'
 
 const splitSources = imports =>
   imports.reduce(
@@ -66,6 +66,10 @@ export default dynamic(
 
       const components = {
         ...mdxComponentMap,
+        Example: EditorConsole,
+        table: props => <table {...props} style={{ margin: '16px' }} />,
+        // td: props => <td {...props} style={{ padding: '4px' }} />,
+        th: props => <th {...props} style={{ padding: '4px' }} />,
         h2: props => <mdxComponentMap.h2 {...props} style={styles.heading} />,
         h1: props => <mdxComponentMap.h1 {...props} style={styles.heading} />,
         blockquote: props => null,

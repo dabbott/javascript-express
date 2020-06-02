@@ -2,6 +2,7 @@ import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import SectionHeader from './SectionHeader'
 import Paragraph from './Paragraph'
+import EditorConsole from './EditorConsole'
 
 // import { Link, SectionHeader } from '../components'
 
@@ -9,6 +10,7 @@ export default function MarkdownProvider({ children }) {
   return (
     <MDXProvider
       components={{
+        Example: EditorConsole,
         p: Paragraph,
         h1: SectionHeader,
         h2: props => <div {...props} style={styles.h2} />,
