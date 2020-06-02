@@ -118,7 +118,8 @@ export default class WebPlayer extends React.Component {
       workspaceCSS,
     } = this.props
 
-    code = code.replace('export {}', '').trim()
+    code =
+      typeof code === 'string' ? code.replace('export {}', '').trim() : code
 
     const params = {
       code,

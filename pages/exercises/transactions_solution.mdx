@@ -1,0 +1,55 @@
+import transactionsStarter from "../../examples/files/exercises/transactionsStarter.ts";
+import transactions1 from "../../examples/files/exercises/transactions1.ts";
+import transactions2 from "../../examples/files/exercises/transactions2.ts";
+import transactions3 from "../../examples/files/exercises/transactions3.ts";
+
+# Transactions Solution
+
+Here's one possible solution to the transactions exercise.
+
+<Example
+  height={850}
+  workspacesTitle="Transactions Solution"
+  workspaces={[
+    {
+      title: "0. Starter code",
+      description: "Given a string of CSV data containing a list of transactions...",
+      workspace: {
+        title: "index.ts",
+        initialTab: "index.ts",
+        entry: "index.ts",
+        files: { "index.ts": transactionsStarter },
+      },
+    },
+    {
+      title: "1. Parsing",
+      description: "Define a new `Transaction` type and parse the CSV data into an array of `Transaction`",
+      workspace: {
+        title: "index.ts",
+        initialTab: "index.ts",
+        entry: "index.ts",
+        files: { "index.ts": [transactionsStarter, transactions1].join('\n') },
+      },
+    },
+    {
+      title: "2. Currencies",
+      description: "Print the name of each unique `currency` in the data set (e.g. `\"ETH, BTC\"`)",
+      workspace: {
+        title: "index.ts",
+        initialTab: "index.ts",
+        entry: "index.ts",
+        files: { "index.ts": [transactionsStarter, transactions1, transactions2].join('\n') },
+      },
+    },
+    {
+      title: "3. Largest transactions",
+      description: "For each currency, print the `currency` and `value` of the transaction with the largest positive value for that currency (e.g. `\"ETH: 0.519, BTC: 1.137\"`)",
+      workspace: {
+        title: "index.ts",
+        initialTab: "index.ts",
+        entry: "index.ts",
+        files: { "index.ts": [transactionsStarter, transactions1, transactions2, transactions3].join('\n') },
+      },
+    },
+  ]}
+/>
