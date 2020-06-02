@@ -2,6 +2,8 @@ import slice from '../../examples/files/collections/slice.ts'
 import concat from '../../examples/files/collections/concat.ts'
 import filter from '../../examples/files/collections/filter.ts'
 
+# Transformations
+
 While modifying an array is often useful, sometimes we want to create a new array instead.
 
 - `slice`
@@ -9,6 +11,8 @@ While modifying an array is often useful, sometimes we want to create a new arra
 - `filter`
 
 When we copy elements from the original array to a new array, we're only copying _references_. In other words, mutating an element in the copy will mutate it in the original array too. We often call this a "shallow" copy. 
+
+---
 
 ## Slices
 
@@ -18,6 +22,8 @@ We use `slice` to create a copy of part (or all) of an array.
   title={"Slice"}
   code={slice}
 />
+
+---
 
 ## Concat
 
@@ -29,6 +35,8 @@ Any parameters that are arrays are flattened into the new array. Any parameters 
   title={"Concat"}
   code={concat}
 />
+
+---
 
 ## Filter
 

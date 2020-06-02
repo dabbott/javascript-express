@@ -1,11 +1,13 @@
-let myValue: string | null
+let myValue: { name: string } | null
 
 const someCondition = false
 
 if (someCondition) {
-  myValue = 'Devin'
+  myValue = { name: 'Devin' }
 } else {
   myValue = null
 }
 
 console.log(myValue)
+
+export {}
