@@ -1,4 +1,3 @@
-import EditorConsole from '../../components/EditorConsole'
 import assertions from '../../examples/files/type_declarations/assertions.ts'
 import guards from '../../examples/files/type_declarations/guards.ts'
 
@@ -12,7 +11,7 @@ We use type assertions to explicitly change the compile-time type of a value. We
 
 The types `any` and `unknown` can be asserted as any type. Other types can be asserted too, but TypeScript will prevent the assertion if the types are incompatible (e.g. `4 as string`).
 
-<EditorConsole   
+<Example   
   title={"Type assertions"}
   code={assertions}
 />
@@ -21,7 +20,7 @@ The types `any` and `unknown` can be asserted as any type. Other types can be as
 
 We use type guards to refine the compile-time type of a value by reasoning about its runtime value. We can use built-in expressions like `typeof`, standard library functions like `Array.isArray`, or even write our own.
 
-<EditorConsole   
+<Example   
   title={"Type guards"}
   code={guards}
 />

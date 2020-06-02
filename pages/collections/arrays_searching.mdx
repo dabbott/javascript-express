@@ -1,4 +1,3 @@
-import EditorConsole from '../../components/EditorConsole'
 import indexOf from '../../examples/files/collections/indexOf.ts'
 import includes from '../../examples/files/collections/includes.ts'
 import find from '../../examples/files/collections/find.ts'
@@ -13,7 +12,7 @@ import find from '../../examples/files/collections/find.ts'
 
 We can search for an element using `find`, or the element's index using `findIndex`. Both of these methods take a predicate function (a function that takes an element and returns a `boolean`) as an argument.
 
-<EditorConsole   
+<Example   
   title={"Find"}
   code={find}
 />
@@ -22,7 +21,7 @@ We can search for an element using `find`, or the element's index using `findInd
 
 We can search for an element's index using `indexOf` and `lastIndexOf`. These use `===` equality to compare elements.
 
-<EditorConsole   
+<Example   
   title={"Index search"}
   code={indexOf}
 />
@@ -31,7 +30,7 @@ We can search for an element's index using `indexOf` and `lastIndexOf`. These us
 
 We can check if an element exists using `includes`. The `includes` method uses [SameValueZero](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#Same-value-zero_equality) (similar to `===`) to check for equality.
 
-<EditorConsole   
+<Example   
   title={"Includes search"}
   code={includes}
 />

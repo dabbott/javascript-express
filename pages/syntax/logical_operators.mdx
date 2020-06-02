@@ -1,4 +1,3 @@
-import EditorConsole from '../../components/EditorConsole'
 import notOperator from '../../examples/files/syntax/notOperator.ts'
 import andOperator from '../../examples/files/syntax/andOperator.ts'
 import orOperator from '../../examples/files/syntax/orOperator.ts'
@@ -41,7 +40,7 @@ There are 8 falsy values:
 
 We use `!` to convert a **truthy** value to `false`, or a **falsy** value to `true`.
 
-<EditorConsole   
+<Example   
   title={"Not Operator"}
   code={notOperator}
 />
@@ -55,7 +54,7 @@ The `&&` operator takes two operands:
 - If the first operand is falsy, it **evaluates to the first operand** 
 - If the first operand is truthy, and it **evaluates to the second operand**
 
-<EditorConsole   
+<Example   
   title={"And Operator"}
   code={andOperator}
 />
@@ -69,7 +68,7 @@ The `&&` operator takes two operands:
 - If the first operand is truthy, it **evaluates to the first operand** 
 - If the first operand is false, and it **evaluates to the second operand**
 
-<EditorConsole   
+<Example   
   title={"Or Operator"}
   code={orOperator}
 />
@@ -83,7 +82,7 @@ Both `&&` and `||` are _short-circuiting_ operators:
 - `&&`: if the first operand is evaluated as falsy, the second operand will not be evaluated at all (i.e. side-effects will not occur)
 - `||`: if the first operand is evaluated as truthy, the second operand will not be evaluated at all
 
-<EditorConsole   
+<Example   
   title={"Short Circuiting"}
   code={shortCircuiting}
 />

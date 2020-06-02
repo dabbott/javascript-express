@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import WebPlayer from './WebPlayer'
 
-export const ThemeContext = React.createContext('normal')
-
 function countPlaygroundWidgets(code) {
   return (code.match(/console\.log/g) || []).length
 }
@@ -35,23 +33,23 @@ export default class EditorConsole extends Component {
   }
 
   render() {
+    const { variant, ...rest } = this.props
+
     return (
       <WebPlayer
         fullscreen={true}
-        flex={this.context === 'slides' ? '1' : undefined}
-        height={this.props.code ? codeHeight(this.props.code) : 400}
+        flex={variant === 'slides' ? '1' : undefined}
+        height={rest.code ? codeHeight(this.props.code) : 400}
         playground={{ enabled: true }}
         width={0}
         typescript={{ enabled: true }}
-        workspaceCSS={this.context === 'slides' ? workspaceCSS : undefined}
-        {...this.props}
+        workspaceCSS={variant === 'slides' ? workspaceCSS : undefined}
+        {...rest}
         title={undefined}
       />
     )
   }
 }
-
-EditorConsole.contextType = ThemeContext
 
 const workspaceCSS = `
 .CodeMirror {

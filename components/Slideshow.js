@@ -1,7 +1,7 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import dynamic from 'next/dynamic'
-import EditorConsole, { ThemeContext } from './EditorConsole'
+import EditorConsole from './EditorConsole'
 
 const splitSources = imports =>
   imports.reduce(
@@ -66,7 +66,7 @@ export default dynamic(
 
       const components = {
         ...mdxComponentMap,
-        Example: EditorConsole,
+        Example: props => <EditorConsole variant="slides" {...props} />,
         table: props => <table {...props} style={{ margin: '16px' }} />,
         // td: props => <td {...props} style={{ padding: '4px' }} />,
         th: props => <th {...props} style={{ padding: '4px' }} />,
@@ -127,22 +127,20 @@ export default dynamic(
         const { slides, notes } = splitSources(sources)
 
         return (
-          <ThemeContext.Provider value="slides">
-            <MDXProvider components={components}>
-              <Deck loop theme={theme} template={template}>
-                {slides
-                  .map((MDXSlide, i) => [MDXSlide, notes[i]])
-                  .map(([MDXSlide, MDXNote], i) => (
-                    <Slide key={`slide-${i}`} slideNum={i}>
-                      <MDXSlide />
-                      <Notes>
-                        <MDXNote />
-                      </Notes>
-                    </Slide>
-                  ))}
-              </Deck>
-            </MDXProvider>
-          </ThemeContext.Provider>
+          <MDXProvider components={components}>
+            <Deck loop theme={theme} template={template}>
+              {slides
+                .map((MDXSlide, i) => [MDXSlide, notes[i]])
+                .map(([MDXSlide, MDXNote], i) => (
+                  <Slide key={`slide-${i}`} slideNum={i}>
+                    <MDXSlide />
+                    <Notes>
+                      <MDXNote />
+                    </Notes>
+                  </Slide>
+                ))}
+            </Deck>
+          </MDXProvider>
         )
       }
 
