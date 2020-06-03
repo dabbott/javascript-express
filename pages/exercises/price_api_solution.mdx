@@ -1,0 +1,57 @@
+import { moment } from "../../examples/modules";
+import priceApiStarter from "../../examples/files/exercises/priceApiStarter.ts";
+import priceApi1 from "../../examples/files/exercises/priceApi1.ts";
+import priceApi2 from "../../examples/files/exercises/priceApi2.ts";
+import priceApi3 from "../../examples/files/exercises/priceApi3.ts";
+
+# Price API Solution
+
+Here's one possible solution to the price API exercise.
+
+<Example
+  height={850}
+  vendorComponents={[moment]}
+  workspacesTitle="Price API Solution"
+  workspaces={[
+    {
+      title: "0. Starter code",
+      description: "Set up a new project and import moment...",
+      workspace: {
+        title: "index.ts",
+        initialTab: "index.ts",
+        entry: "index.ts",
+        files: { "index.ts": priceApiStarter },
+      },
+    },
+    {
+      title: "1. BitcointPriceIndex",
+      description: "Define a new `BitcointPriceIndex` type that describes the data returned by the API",
+      workspace: {
+        title: "index.ts",
+        initialTab: "index.ts",
+        entry: "index.ts",
+        files: { "index.ts": [priceApiStarter, priceApi1].join('\n') },
+      },
+    },
+    {
+      title: "2. Fetch",
+      description: "Fetch the API data and parse the result. We want the data to have the type `BitcointPriceIndex` after this point.",
+      workspace: {
+        title: "index.ts",
+        initialTab: "index.ts",
+        entry: "index.ts",
+        files: { "index.ts": [priceApiStarter, priceApi1, priceApi2].join('\n') },
+      },
+    },
+    {
+      title: "3. Date of Highest Price",
+      description: "Find the highest price in the last month, and print the date it occurred using the `moment` format `MMMM Do` (e.g. `\"June 3rd\"`). (If the price happened twice, use the first date it occurred)",
+      workspace: {
+        title: "index.ts",
+        initialTab: "index.ts",
+        entry: "index.ts",
+        files: { "index.ts": [priceApiStarter, priceApi1, priceApi2, priceApi3].join('\n') },
+      },
+    },
+  ]}
+/>

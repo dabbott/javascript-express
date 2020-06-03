@@ -1,0 +1,20 @@
+import { moment } from "../../examples/modules";
+import priceApiStarter from "../../examples/files/exercises/priceApiStarter.ts";
+
+# Price API
+
+Using the coindesk API, https://api.coindesk.com/v1/bpi/historical/close.json, for the last 30 days of BTC prices:
+
+1. Define a new `BitcointPriceIndex` type that describes the data returned by the API
+
+2. Fetch the API data and parse the result. We want the data to have the type `BitcointPriceIndex` after this point.
+
+3. Find the highest price in the last month, and print the date it occurred using the `moment` format `MMMM Do` (e.g. `"June 3rd"`). (If the price happened twice, use the first date it occurred)
+
+> This exercise covers materials from the sections: types, syntax, collections, functions.
+
+<Example
+  height={850}
+  code={priceApiStarter}
+  vendorComponents={[moment]}
+/>

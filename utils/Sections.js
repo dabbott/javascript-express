@@ -85,6 +85,8 @@ let sections = [
   createSection('Exercises'),
   createSection('Exercises', 'Transactions'),
   createSection('Exercises', 'Transactions Solution'),
+  createSection('Exercises', 'Price API'),
+  createSection('Exercises', 'Price API Solution'),
   // createSection('Exercises', 'B'),
 
   // createSection('Syntax', 'Fancy Syntax'),
