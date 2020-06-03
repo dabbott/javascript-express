@@ -1,5 +1,8 @@
 import any from '../../examples/files/type_declarations/any.ts'
 import unknown from '../../examples/files/type_declarations/unknown.ts'
+import hasProperty from '../../examples/files/type_declarations/hasProperty.ts'
+
+# Any and Unknown
 
 The types `any` and `unknown` are used when we don't know the type of a value (e.g. dynamic content like parsed json).
 
@@ -16,9 +19,22 @@ The type `any` essentially disables type-checking for a value. A variable with t
 
 The type `unknown` is the type-safe version of `any`. A variable with type `unknown` can't be used for anything without first refining it to another type.
 
-Many standard library functions use `any`, but we should almost use `unknown` instead. Unknown is relatively new - otherwise more standard library functions would probably use it.
+Many standard library functions use `any`, but we should generally use `unknown` instead. Unknown is relatively new - otherwise more standard library functions would probably use it.
 
 <Example   
   title={"Unknown"}
   code={unknown}
+/>
+
+## Checking unknown keys
+
+Due to [current limitations](https://github.com/Microsoft/TypeScript/issues/21732) of the `in` operator, it's difficult to check if a key exists on an `unknown` value.
+
+This is one case where `any` may make more sense for convenience. However, you can define a type guard function to accomplish this.
+
+> We'll cover type guards in more detail right after this
+
+<Example   
+  title={"Checking unknown keys"}
+  code={hasProperty}
 />
