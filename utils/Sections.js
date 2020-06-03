@@ -29,7 +29,7 @@ let sections = [
   createSection('Types', 'Object Types'),
   createSection('Types', 'Library Types'),
   createSection('Types', 'Nullability'),
-  createSection('Types', 'Type Names'),
+  createSection('Types', 'Checking Types'),
 
   createSection('Syntax'),
   createSection('Syntax', 'Variables'),

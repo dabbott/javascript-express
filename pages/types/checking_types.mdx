@@ -1,0 +1,48 @@
+import typeofExample from '../../examples/files/types/typeof.ts'
+import instanceofExample from '../../examples/files/types/instanceof.ts'
+import className from '../../examples/files/types/className.ts'
+
+# Checking types
+
+Sometimes we want to check the type of a value _at runtime_. 
+
+For primitive types and functions, we do this by accessing the _name_ of the type using the `typeof` keyword.
+
+For object types, there isn't a single best approach, but we'll look at a couple.
+
+---
+
+## Primitive type names
+
+We can find the type name of a primitive or function value using the `typeof` operator:
+
+<Example   
+  title={"Primitive type names"}
+  code={typeofExample}
+/>
+
+---
+
+## Checking object types
+
+We typically use the `instanceof` operator to compare an object value with its constructor.
+
+However, there are some edge cases where we may rely on special library methods like `Array.isArray` instead. 
+
+<Example   
+  title={"Checking object types"}
+  code={instanceofExample}
+/>
+
+---
+
+## Object type names
+
+Generally we should use `instanceof`, but we _can_ find the type name an object value if we really want to.
+
+> Note that this runs much more slowly than `typeof` or `instanceof`.
+
+<Example   
+  title={"Object type names"}
+  code={className}
+/>
