@@ -1,10 +1,72 @@
+import loops from '../../examples/files/syntax/loops.ts'
+import forOf from '../../examples/files/syntax/forOf.ts'
+import forIn from '../../examples/files/syntax/forIn.ts'
+import forEach from '../../examples/files/syntax/forEach.ts'
+import hasOwnProperty from '../../examples/files/syntax/hasOwnProperty.ts'
+
 # Iteration
 
-- for, while
-- for in
-- for of
-- hasOwnProperty
+There are several approaches to iteration:
 
-- break, continue, return
+- `for`, `while`, and `do while` loops
+- `for ... in` and `for ... of` loops for object iteration
+- `forEach` for array iteration (and `map`, `reduce`, etc. for array transformation)
 
-- forEach
+> Generally, `forEach` and array transformations are slightly more idiomatic than loops, since they express the developer's intent more clearly. However, loops perform faster.
+
+## Loops
+
+JavaScript supports `for`, `while`, and `do while` loops. We can use `break` to exit the loop immediately or `continue` to advance to the next iteration. Nested loops can be labeled.
+
+> These have essentially the same syntax and work the same way as in other C-like languages.
+
+<Example   
+  title={"Loops"}
+  code={loops}
+/>
+
+## For ... of
+
+We can use a `for ... of` loop to iterate through _values_ within an object.
+
+We do this most commonly with arrays, but many standard library objects can be iterated this way. 
+
+> We can also define custom iteration behavior.
+
+<Example   
+  title={"For of"}
+  code={forOf}
+/>
+
+## For ... in
+
+The `for ... in` loop iterates through the _keys_ of an object.
+
+However, it also includes inherited properties, which is often not what we want.
+
+> Due to historical complexities, `for ... in` loops aren't very common.
+
+<Example   
+  title={"For in"}
+  code={forIn}
+/>
+
+## hasOwnProperty
+
+If we do want to use a `for ... in` loop, we can use the `hasOwnProperty` method to filter inherited properties.
+
+<Example   
+  title={"hasOwnProperty"}
+  code={hasOwnProperty}
+/>
+
+## forEach
+
+We use `forEach` to call a function for each element of an array. The function is also passed the element, the element's index, and the array itself.
+
+We'll generally use this instead of `for ... of`, unless we need to exit the loop early (i.e. `break` doesn't exist in `forEach` loops).
+
+<Example   
+  title={"forEach"}
+  code={forEach}
+/>
