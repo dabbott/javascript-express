@@ -29,7 +29,7 @@ npm run start
 
 ## Demo
 
-The production version of this app is running [here](http://www.reactnativeexpress.com).
+The production version of this app is running [here](http://www.javascript.express).
 
 ## Contributing
 

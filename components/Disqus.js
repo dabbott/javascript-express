@@ -22,8 +22,8 @@ export default class Disqus extends Component {
 
     const url = window.location.href
 
-    const prod = window.location.hostname.match('reactnativeexpress.com')
-    const shortname = prod ? 'reactnativeexpress' : 'reactnativeexpress-staging'
+    const prod = window.location.hostname.match('javascript.express')
+    const shortname = prod ? 'javascriptexpress' : 'javascriptexpress-staging'
 
     const { identifier, title } = this.props
 
