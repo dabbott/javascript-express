@@ -1,13 +1,13 @@
-const mySet: Set<string> = new Set(['a', 'b'])
+const mySet: Set<string> = new Set()
 
-console.log(mySet.has('a'), mySet.has('b'), mySet.has('c'))
+console.log(mySet.has('hello'))
 
-mySet.add('c')
+mySet.add('hello')
 
-console.log(mySet.has('c'))
+console.log(mySet.has('hello'))
 
-mySet.delete('c')
+mySet.delete('hello')
 
-console.log(mySet.has('c'))
+console.log(mySet.has('hello'))
 
 export {}

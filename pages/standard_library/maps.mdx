@@ -1,1 +1,39 @@
+import creatingMaps from '../../examples/files/collections/creatingMaps.ts'
+import workingWithMaps from '../../examples/files/collections/workingWithMaps.ts'
+
 # Maps
+
+Maps are mutable collections of key-value pairs. Each key must be unique, and uniqueness is determined by (roughly) `===` comparison.
+
+Unlike objects, keys can be any value, not just strings and symbols.
+
+The main APIs are:
+
+- `set`
+- `get`
+- `has`
+- `delete`
+
+> It's still much more common to use objects than maps
+
+---
+
+## Creating maps
+
+<Example   
+  title={"Creating maps"}
+  code={creatingMaps}
+/>
+
+---
+
+## Working with maps
+
+When working with maps, we commonly convert them to and from arrays, since arrays have more built-in methods for transforming the contents.
+
+> This array of "tuples" is the same as what `Object.entries` returns for objects
+
+<Example   
+  title={"Working with maps"}
+  code={workingWithMaps}
+/>

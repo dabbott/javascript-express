@@ -1,10 +1,11 @@
-const fruit1 = ['apples', 'oranges', 'peaches']
-const fruit2 = ['apples', 'cherries', 'pears']
+const fruit = ['apples', 'oranges', 'apples', 'oranges', 'oranges']
 
-// Convert arrays to set
-const fruitSet = new Set([...fruit1, ...fruit2])
+// Convert array to set
+const fruitSet = new Set(fruit)
 
 // Convert back to array, without duplicates
-const fruitArray = Array.from(fruitSet)
+const fruitArray = [...fruitSet]
 
 console.log(fruitArray)
+
+export {}
