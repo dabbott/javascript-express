@@ -30,10 +30,7 @@ export default class MyDocument extends Document {
             content="Learn React Native with interactive examples."
           />
           <meta property="og:type" content="article" />
-          <meta
-            property="og:url"
-            content="http://www.reactnativeexpress.com/"
-          />
+          <meta property="og:url" content="http://www.javascript.express/" />
           <meta property="og:site_name" content="React Native Express" />
           <meta property="og:title" content="React Native Express" />
           <meta
@@ -42,7 +39,7 @@ export default class MyDocument extends Document {
           />
           <meta
             property="og:image"
-            content="http://www.reactnativeexpress.com/static/logo@2x.png"
+            content="http://www.javascript.express/static/logo@2x.png"
           />
           <meta property="og:image:width" content="256" />
           <meta property="og:image:height" content="256" />
