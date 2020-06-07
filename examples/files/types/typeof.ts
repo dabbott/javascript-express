@@ -12,5 +12,5 @@ if (typeof myVariableThatDoesNotExist === 'undefined') {
 
 console.log(typeof function() {})
 
-// But this is only useful for primitives and functions
+// But this is only useful for (non-null) primitives and functions
 console.log(typeof [], typeof {}, typeof null)
