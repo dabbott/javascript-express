@@ -35,6 +35,7 @@ let sections = [
   createSection('Syntax', 'Equality'),
   createSection('Syntax', 'Logical Operators'),
   createSection('Syntax', 'Iteration'),
+  createSection('Syntax', 'Spread'),
 
   createSection('Standard Library'),
   createSection('Standard Library', 'Arrays'),
@@ -75,6 +76,7 @@ let sections = [
 
   createSection('Async Control Flow'), // No threads. Callbacks & promises
   createSection('Async Control Flow', 'Callbacks'),
+  createSection('Async Control Flow', 'Event Listeners'),
   createSection('Async Control Flow', 'Event Loop'), // setTimeout, setInterval
   createSection('Async Control Flow', 'Promises'),
   createSection('Async Control Flow', 'Async and Await'),

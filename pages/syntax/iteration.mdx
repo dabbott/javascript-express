@@ -14,6 +14,8 @@ There are several approaches to iteration:
 
 > Generally, `forEach` and array transformations are slightly more idiomatic than loops, since they express the developer's intent more clearly. However, loops perform faster.
 
+---
+
 ## Loops
 
 JavaScript supports `for`, `while`, and `do while` loops. We can use `break` to exit the loop immediately or `continue` to advance to the next iteration. Nested loops can be labeled.
@@ -24,6 +26,8 @@ JavaScript supports `for`, `while`, and `do while` loops. We can use `break` to 
   title={"Loops"}
   code={loops}
 />
+
+---
 
 ## For ... of
 
@@ -38,6 +42,8 @@ We do this most commonly with arrays, but many standard library objects can be i
   code={forOf}
 />
 
+---
+
 ## For ... in
 
 The `for ... in` loop iterates through the _keys_ of an object.
@@ -51,6 +57,8 @@ However, it also includes inherited properties, which is often not what we want.
   code={forIn}
 />
 
+---
+
 ## hasOwnProperty
 
 If we do want to use a `for ... in` loop, we can use the `hasOwnProperty` method to filter inherited properties.
@@ -59,6 +67,8 @@ If we do want to use a `for ... in` loop, we can use the `hasOwnProperty` method
   title={"hasOwnProperty"}
   code={hasOwnProperty}
 />
+
+---
 
 ## forEach
 

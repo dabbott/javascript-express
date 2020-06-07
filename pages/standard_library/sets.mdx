@@ -1,1 +1,36 @@
+import creatingSets from '../../examples/files/collections/creatingSets.ts'
+import workingWithSets from '../../examples/files/collections/workingWithSets.ts'
+
 # Sets
+
+Sets are mutable collections of values. Each value must be unique, and uniqueness is determined by (roughly) `===` comparison.
+
+The main APIs are:
+
+- `add`
+- `has`
+- `delete`
+
+> For sample implementions of common set operations, like intersection and difference, see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#Implementing_basic_set_operations
+
+---
+
+## Creating sets
+
+<Example   
+  title={"Creating sets"}
+  code={creatingSets}
+/>
+
+---
+
+## Working with sets
+
+When working with sets, we commonly convert them to and from arrays, since arrays have more built-in methods for transforming the contents.
+
+> Converting an array to a set and back is a convenient way to remove duplicates
+
+<Example   
+  title={"Working with sets"}
+  code={workingWithSets}
+/>
