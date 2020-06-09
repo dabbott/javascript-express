@@ -4,7 +4,7 @@ const myArray2 = [1, 2, ...myArray1, 6, 7]
 
 console.log(myArray2)
 
-const myObject1 = { name: 'Devin', hair: 'brown' }
+const myObject1 = { name: 'Devin', hairColor: 'brown' }
 
 const myObject2 = { ...myObject1, age: 29 }
 

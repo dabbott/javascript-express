@@ -63,6 +63,8 @@ However, it also includes inherited properties, which is often not what we want.
 
 If we do want to use a `for ... in` loop, we can use the `hasOwnProperty` method to filter inherited properties.
 
+> Modifying the prototype of a class will modify key lookup behavior for _every_ object, and is something you should almost never do. However, it's possible that a library may do it (possibly by mistake), so it's still something to watch out for.
+
 <Example   
   title={"hasOwnProperty"}
   code={hasOwnProperty}

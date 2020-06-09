@@ -1,11 +1,86 @@
+import objectsAddingAndRemoving from '../../examples/files/collections/objectsAddingAndRemoving.ts'
+import inOperator from '../../examples/files/collections/inOperator.ts'
+import objectTransformations from '../../examples/files/collections/objectTransformations.ts'
+import objectsFromArrays from '../../examples/files/collections/objectsFromArrays.ts'
+import objectsCloningAndMerging from '../../examples/files/collections/objectsCloningAndMerging.ts'
+
 # Objects
 
-- `keys`
-- `values`
-- `entries`
-- `fromEntries`
-- `assign`
+We use objects extremely frequently — probably more than any other data structure. In this section, we'll cover:
 
-- `in` operator (mention `hasOwnProperty` again)
+- Adding and removing keys
+- Checking existence of keys
+- Clone and merging
+- Converting to and from arrays
 
-- `delete` operator
+Generally we'll only use these techniques with "plain objects", but these all technically work on class instances too.
+
+---
+
+## Adding and removing elements
+
+We add new elements or update existing elements by assigning a value to a specific key. We remove elements with the `delete` operator.
+
+> Using `delete` is different than assigning an undefined value! Deleting removes the key altogether.
+
+<Example   
+  title={"Adding and removing elements"}
+  code={objectsAddingAndRemoving}
+/>
+
+---
+
+## Checking existence
+
+We use the `in` operator and the `hasOwnProperty` method to check if an object contains a key.
+
+The difference: `in` also returns `true` for inherited properties.
+
+<Example   
+  title={"Checking existence"}
+  code={inOperator}
+/>
+
+---
+
+## Cloning and merging
+
+We use `Object.assign` or spread syntax `...` to clone and merge objects.
+
+If keys conflict, the last object merged takes precedence.
+
+> Just like with arrays, merging is shallow; we only copy _references_ to elements.
+
+<Example   
+  title={"Cloning and merging"}
+  code={objectsCloningAndMerging}
+  sharedEnvironment={false}
+/>
+
+---
+
+## Creating arrays from objects
+
+We often want to run a function for each key, each value, or each key-value pair in an object. To do this, We generally convert the object into an array, and then transform it using array methods. 
+
+We can use the static methods `Object.keys`, `Object.values`, and `Object.entries` to transform an object into an array.
+
+> While we can use a `for ... in` loop, it's much less common. We mainly use `for ... in` for performance reasons or if we want to exit the loop early, but the difference is small.
+
+<Example   
+  title={"Creating arrays from objects"}
+  code={objectTransformations}
+/>
+
+---
+
+## Creating objects from arrays
+
+After transforming an object to an array, we often want to transform the array _back_ to an object.
+
+If we used `Object.entries`, we can then use `Object.fromEntries`. Alternately, we can achieve more custom behavior with `reduce`.
+
+<Example   
+  title={"Creating objects from arrays"}
+  code={objectsFromArrays}
+/>

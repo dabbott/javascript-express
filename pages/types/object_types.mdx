@@ -1,6 +1,7 @@
 import arrayType from '../../examples/files/types/arrayType.ts'
 import objectType from '../../examples/files/types/objectType.ts'
 import functionType from '../../examples/files/types/functionType.ts'
+import intendedPurpose from '../../examples/files/types/intendedPurpose.ts'
 
 # Object Types
 
@@ -14,7 +15,7 @@ There are 3 extremely common built-in object types: `Object`, `Array`, and `Func
 
 ## Objects
 
-The type `Object` is the base class of all other object types. Objects are associative arrays (a.k.a maps or dictionaries).
+The class `Object` is the base class of all object types. Objects are associative arrays (a.k.a maps or dictionaries).
 
 Keys can only be strings (or symbols), although we can restrict the set of allowed keys (e.g. to numbers) using type annotations — non-string keys will be coerced to strings at runtime.
 
@@ -28,6 +29,8 @@ Keys can only be strings (or symbols), although we can restrict the set of allow
 ---
 
 ## Arrays
+
+The `Array` class is a subclass of `Object` that handles integer keys specially.
 
 We use array literal syntax to declare arrays:
 
@@ -50,4 +53,19 @@ There are two ways to declare functions:
 <Example
   title={"Functions"}
   code={functionType}
+/>
+
+---
+
+## Use types for their intended purpose
+
+Since all object types are subclasses of `Object`, even `Array` and `Function` values are associative arrays. This means we can assign arbitrary keys and values.
+
+However, we _generally_ shouldn't use them like this it's not their intended purpose.
+
+> There are some standard library methods and 3rd party frameworks that do this, so it's more a suggestion than a rule.
+
+<Example
+  title={"Intended purposes"}
+  code={intendedPurpose}
 />
