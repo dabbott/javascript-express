@@ -4,7 +4,7 @@ function formatSlug(string) {
 
 function createSection(folder, title, nestedTitle) {
   if (!title) {
-    const slug = formatSlug(`${folder}/index`)
+    const slug = formatSlug(`${folder}`)
     return { depth: 0, title: folder, slug }
   }
 
