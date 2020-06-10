@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Banner from './Banner'
 import ShowAt from './ShowAt'
 import HideAt from './HideAt'
 import MarkdownProvider from './MarkdownProvider'
@@ -49,6 +48,18 @@ const FooterContainer = styled.div({
 const Title = styled.span(textStyles.title)
 
 const Subtitle = styled.span(textStyles.subtitle)
+
+const Banner = styled.div(({ height }) => ({
+  position: 'relative',
+  height: `${height || 200}px`,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  background: `linear-gradient(to bottom, ${colors.banner.top}, ${
+    colors.banner.bottom
+  })`,
+}))
 
 export default class Page extends Component {
   render() {

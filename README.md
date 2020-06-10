@@ -8,23 +8,17 @@ A guide and reference to help people get started with React Native.
 yarn
 ```
 
-OR
-
-```bash
-npm install
-```
-
 ## Running Dev Server
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 ## Building and Running Production Server
 
 ```bash
-npm run build
-npm run start
+yarn build
+yarn start
 ```
 
 ## Demo
@@ -37,7 +31,7 @@ Please contribute!
 
 ## License
 
-MIT, Copyright (c) 2016 Devin Abbott
+MIT, Copyright (c) 2020 Devin Abbott
 
 ## Author
 

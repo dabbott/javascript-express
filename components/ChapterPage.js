@@ -176,6 +176,14 @@ class ChapterPage extends React.Component {
                   bannerHeight={560}
                   showLogo
                 >
+                  <a
+                    className="github-fork-ribbon"
+                    href="https://github.com/dabbott/javascript-express"
+                    data-ribbon="Fork me on GitHub"
+                    title="Fork me on GitHub"
+                  >
+                    Fork me on GitHub
+                  </a>
                   {contents}
                 </Page>
               ) : (

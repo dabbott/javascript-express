@@ -1,9 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import ReactNativeWebPlayer from 'react-native-web-player'
-
+import styled from 'styled-components'
 import isMobile from '../utils/isMobile'
-import { param } from 'change-case'
 
 const playerStyles = {
   tab: {
