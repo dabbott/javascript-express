@@ -26,29 +26,22 @@ const Spacer = styled.div({
   },
 })
 
-export default class extends React.Component {
-  render() {
-    const { nextSection, previousSection } = this.props
-    return (
-      <Container>
-        {previousSection ? (
-          <Button
-            variant={'secondary'}
-            href={`/${previousSection.slug}`}
-            title={`Previous - ${previousSection.title}`}
-          />
-        ) : (
-          <div />
-        )}
-        {previousSection && <Spacer />}
-        {nextSection && (
-          <Button
-            variant={'primary'}
-            href={`/${nextSection.slug}`}
-            title={`Next - ${nextSection.title}`}
-          />
-        )}
-      </Container>
-    )
-  }
-}
+export default ({ nextSection, previousSection }) => (
+  <Container>
+    {previousSection && (
+      <Button
+        variant={'secondary'}
+        href={`/${previousSection.slug}`}
+        title={`Previous - ${previousSection.title}`}
+      />
+    )}
+    {previousSection && <Spacer />}
+    {nextSection && (
+      <Button
+        variant={'primary'}
+        href={`/${nextSection.slug}`}
+        title={`Next - ${nextSection.title}`}
+      />
+    )}
+  </Container>
+)

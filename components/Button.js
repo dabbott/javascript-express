@@ -7,7 +7,7 @@ const Title = styled.div(({ variant }) => ({
   flex: '0 0 auto',
   padding: '10px 15px',
   backgroundColor:
-    variant === 'secondary' ? 'rgb(210,210,210)' : colors.primary,
+    variant === 'secondary' ? 'rgb(160,160,160)' : colors.primary,
   color: variant === 'secondary' ? 'white' : 'black',
   borderRadius: '3px',
   textAlign: 'center',

@@ -19,14 +19,6 @@ import PageComponents from './PageComponents'
 import Sidebar from './Sidebar'
 
 const Container = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'stretch',
-  minWidth: '0',
-  minHeight: '0',
-})
-
-const Inner = styled.div({
   flex: '1 1 auto',
   flexDirection: 'row',
   alignItems: 'stretch',
@@ -181,56 +173,54 @@ const Page = ({ router, children }) => {
         <html lang="en" />
       </Helmet>
       <Container>
-        <Inner>
-          {showSidebar && (
-            <SidebarContainer>
-              <Sidebar currentSection={section} />
-            </SidebarContainer>
-          )}
-          <Content key={slug}>
-            <MenuButtonContainer>
-              <DesktopOnly>
-                <HamburgerButton
-                  onPress={() => void setShowSidebar(!showSidebar)}
-                />
-              </DesktopOnly>
-              <MobileOnly>
-                <HamburgerButton onPress={() => void setShowMenu(!showMenu)} />
-              </MobileOnly>
-            </MenuButtonContainer>
-            <PageContainer tabIndex={'-1'}>
-              {isIntroduction ? (
-                <Banner variant={'large'}>
-                  <Title>{'JavaScript Express'}</Title>
-                  <Subtitle>
-                    {'Learn JavaScript through interactive examples'}
-                  </Subtitle>
-                  <Logo src={logo} />
-                </Banner>
-              ) : (
-                <Banner variant={'small'}>
-                  <Title>{title}</Title>
-                </Banner>
-              )}
-              <PageContentContainer>
-                {isIntroduction && <GithubRibbon title={'View on GitHub'} />}
-                {children}
-              </PageContentContainer>
-              <NavigationFooter
-                nextSection={nextSection}
-                previousSection={previousSection}
-              />
-            </PageContainer>
-          </Content>
-        </Inner>
-        {showMenu && (
-          <MobileOnly>
-            <MenuContainer tabIndex="-1">
-              <Sidebar currentSection={section} centered />
-            </MenuContainer>
-          </MobileOnly>
+        {showSidebar && (
+          <SidebarContainer>
+            <Sidebar currentSection={section} />
+          </SidebarContainer>
         )}
+        <Content key={slug}>
+          <MenuButtonContainer>
+            <DesktopOnly>
+              <HamburgerButton
+                onPress={() => void setShowSidebar(!showSidebar)}
+              />
+            </DesktopOnly>
+            <MobileOnly>
+              <HamburgerButton onPress={() => void setShowMenu(!showMenu)} />
+            </MobileOnly>
+          </MenuButtonContainer>
+          <PageContainer tabIndex={'-1'}>
+            {isIntroduction ? (
+              <Banner variant={'large'}>
+                <Title>{'JavaScript Express'}</Title>
+                <Subtitle>
+                  {'Learn JavaScript through interactive examples'}
+                </Subtitle>
+                <Logo src={logo} />
+              </Banner>
+            ) : (
+              <Banner variant={'small'}>
+                <Title>{title}</Title>
+              </Banner>
+            )}
+            <PageContentContainer>
+              {isIntroduction && <GithubRibbon title={'View on GitHub'} />}
+              {children}
+            </PageContentContainer>
+            <NavigationFooter
+              nextSection={nextSection}
+              previousSection={previousSection}
+            />
+          </PageContainer>
+        </Content>
       </Container>
+      {showMenu && (
+        <MobileOnly>
+          <MenuContainer tabIndex="-1">
+            <Sidebar currentSection={section} centered />
+          </MenuContainer>
+        </MobileOnly>
+      )}
     </MDXProvider>
   )
 }
