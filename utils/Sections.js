@@ -17,7 +17,7 @@ let sections = [
   {
     hidden: true,
     depth: 0,
-    title: 'Learning JavaScript',
+    title: 'JavaScript Express',
     slug: '',
   },
 

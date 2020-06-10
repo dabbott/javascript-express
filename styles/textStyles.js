@@ -13,10 +13,12 @@ export default {
   },
   subtitle: {
     textAlign: 'center',
-    fontSize: '18px',
+    fontSize: '22px',
     fontWeight: '300',
-    paddingTop: '10px',
     color: colors.text,
+    [mediaQuery.small]: {
+      fontSize: '18px',
+    },
   },
   header: {
     fontSize: '24px',

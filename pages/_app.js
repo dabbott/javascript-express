@@ -3,9 +3,9 @@ import 'github-fork-ribbon-css/gh-fork-ribbon.css'
 import '../styles/main.css'
 
 import React from 'react'
-import App, { Container } from 'next/app'
+import App from 'next/app'
 import Router from 'next/router'
-import ChapterPage from '../components/ChapterPage'
+import ChapterPage from '../components/Page'
 import { pageView } from '../utils/Analytics'
 
 export default class MyApp extends App {

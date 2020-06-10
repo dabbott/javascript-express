@@ -1,11 +1,98 @@
-import React, { Component } from 'react'
+import { MDXProvider } from '@mdx-js/react'
+import { withRouter } from 'next/router'
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import logo from '../images/logo.svg'
 import colors from '../styles/colors'
 import textStyles from '../styles/textStyles'
 import mediaQuery from '../utils/mediaQuery'
+import {
+  getNextSection,
+  getPreviousSection,
+  getSection,
+} from '../utils/Sections'
+import HamburgerButton from './HamburgerButton'
+import NavigationFooter from './NavigationFooter'
+import PageComponents from './PageComponents'
+import Sidebar from './Sidebar'
 
 const Container = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'stretch',
+  minWidth: '0',
+  minHeight: '0',
+})
+
+const Inner = styled.div({
+  flex: '1 1 auto',
+  flexDirection: 'row',
+  alignItems: 'stretch',
+  display: 'flex',
+  minWidth: '0',
+  minHeight: '0',
+})
+
+const Content = styled.div({
+  flex: '1 1 auto',
+  display: 'flex',
+  position: 'relative',
+  minWidth: '0',
+  minHeight: '0',
+  overflowY: 'auto',
+  // overflowY: 'scroll',
+})
+
+const SidebarContainer = styled.div({
+  flex: '0 0 280px',
+  borderRight: `1px solid ${colors.divider}`,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'stretch',
+  minWidth: '0',
+  minHeight: '0',
+  outline: 'none',
+
+  [mediaQuery.small]: {
+    display: 'none',
+  },
+})
+
+const MobileOnly = styled.div({
+  display: 'none',
+  [mediaQuery.small]: {
+    display: 'flex',
+  },
+})
+
+const DesktopOnly = styled.div({
+  display: 'flex',
+  [mediaQuery.small]: {
+    display: 'none',
+  },
+})
+
+const MenuContainer = styled.div({
+  position: 'absolute',
+  top: '0',
+  bottom: '0',
+  left: '0',
+  right: '0',
+  zIndex: '10000',
+  backgroundColor: 'white',
+  overflowY: 'auto',
+})
+
+const MenuButtonContainer = styled.div({
+  position: 'absolute',
+  top: '10px',
+  left: '10px',
+  zIndex: 12000,
+})
+
+const PageContainer = styled.div({
   flex: '1 1 auto',
   display: 'flex',
   flexDirection: 'column',
@@ -14,7 +101,7 @@ const Container = styled.div({
   outline: 'none',
 })
 
-const ContentContainer = styled.div({
+const PageContentContainer = styled.div({
   borderTop: `1px solid ${colors.divider}`,
   backgroundColor: 'white',
   padding: '60px 60px',
@@ -55,20 +142,101 @@ const Banner = styled.div(({ variant }) => ({
   },
 }))
 
-export default class Page extends Component {
-  render() {
-    const { children, footer, title, subtitle, showLogo } = this.props
+const GithubRibbon = ({ title }) => (
+  <a
+    className="github-fork-ribbon"
+    href="https://github.com/dabbott/javascript-express"
+    data-ribbon={title}
+    title={title}
+  >
+    {title}
+  </a>
+)
 
-    return (
-      <Container tabIndex={'-1'}>
-        <Banner variant={showLogo ? 'large' : 'small'}>
-          <Title>{title}</Title>
-          {subtitle && <Subtitle>{subtitle}</Subtitle>}
-          {showLogo && <Logo src={logo} />}
-        </Banner>
-        <ContentContainer>{children}</ContentContainer>
-        {footer}
+const Page = ({ router, children }) => {
+  const [showSidebar, setShowSidebar] = useState(true)
+  const [showMenu, setShowMenu] = useState(false)
+
+  useEffect(
+    () => {
+      setShowMenu(false)
+    },
+    [router.pathname]
+  )
+
+  const slug = router.pathname.slice(1)
+
+  const isIntroduction = slug === ''
+  const section = getSection(slug)
+
+  if (!section) return `Could not find page: ${slug}`
+
+  const title = section.fullTitle || section.title
+  const nextSection = getNextSection(slug)
+  const previousSection = getPreviousSection(slug)
+
+  return (
+    <MDXProvider components={PageComponents}>
+      <Helmet title={title}>
+        <html lang="en" />
+      </Helmet>
+      <Container>
+        <Inner>
+          {showSidebar && (
+            <SidebarContainer>
+              <Sidebar currentSection={section} />
+            </SidebarContainer>
+          )}
+          <Content key={slug}>
+            <MenuButtonContainer>
+              <DesktopOnly>
+                <HamburgerButton
+                  onPress={() => void setShowSidebar(!showSidebar)}
+                />
+              </DesktopOnly>
+              <MobileOnly>
+                <HamburgerButton onPress={() => void setShowMenu(!showMenu)} />
+              </MobileOnly>
+            </MenuButtonContainer>
+            <PageContainer tabIndex={'-1'}>
+              {isIntroduction ? (
+                <Banner variant={'large'}>
+                  <Title>{'JavaScript Express'}</Title>
+                  <Subtitle>
+                    {'Learn JavaScript through interactive examples'}
+                  </Subtitle>
+                  <Logo src={logo} />
+                </Banner>
+              ) : (
+                <Banner variant={'small'}>
+                  <Title>{title}</Title>
+                </Banner>
+              )}
+              <PageContentContainer>
+                {isIntroduction && <GithubRibbon title={'View on GitHub'} />}
+                {children}
+              </PageContentContainer>
+              <NavigationFooter
+                nextSection={nextSection}
+                previousSection={previousSection}
+              />
+            </PageContainer>
+          </Content>
+        </Inner>
+        {showMenu && (
+          <MobileOnly>
+            <MenuContainer tabIndex="-1">
+              <Sidebar currentSection={section} centered />
+            </MenuContainer>
+          </MobileOnly>
+        )}
       </Container>
-    )
-  }
+    </MDXProvider>
+  )
 }
+
+Page.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export default withRouter(Page)

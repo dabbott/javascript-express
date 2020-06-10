@@ -4,7 +4,7 @@ import mediaQuery from '../utils/mediaQuery'
 import Button from './Button'
 
 const Container = styled.div({
-  flex: '1 1 auto',
+  flex: '0 0 auto',
   display: 'flex',
   flexDirection: 'row',
 
