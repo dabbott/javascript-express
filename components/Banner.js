@@ -15,7 +15,7 @@ const Container = styled.div(({ height }) => ({
 
 export default ({ children, height }) => (
   <Container height={height}>
-    {/* <GithubCorner /> */}
+    <GithubCorner />
     {children}
   </Container>
 )

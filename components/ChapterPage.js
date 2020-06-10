@@ -1,25 +1,21 @@
-import Router, { withRouter } from 'next/router'
-import React from 'react'
-import styled from 'styled-components'
+import { withRouter } from 'next/router'
 import PropTypes from 'prop-types'
+import React from 'react'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
 import mediaQuery from '../utils/mediaQuery'
-
-import MarkdownProvider from './MarkdownProvider'
-import Page from './Page'
-import HideAt from './HideAt'
-import ShowAt from './ShowAt'
-import Sidebar from './Sidebar'
-import PageHeader from './PageHeader'
-import NavigatorButton from './NavigatorButton'
-import HamburgerButton from './HamburgerButton'
-import Disqus from './Disqus'
-import BookBanner from './BookBanner'
 import {
-  getSection,
   getNextSection,
   getPreviousSection,
+  getSection,
 } from '../utils/Sections'
+import HamburgerButton from './HamburgerButton'
+import HideAt from './HideAt'
+import MarkdownProvider from './MarkdownProvider'
+import NavigatorButton from './NavigatorButton'
+import Page from './Page'
+import ShowAt from './ShowAt'
+import Sidebar from './Sidebar'
 
 const Container = styled.div({
   display: 'flex',
@@ -138,23 +134,10 @@ class ChapterPage extends React.Component {
             previousSection={previousSection}
           />
         </NavigatorButtonContainer>
-        {/* {!isIntroduction && <BookBanner />} */}
-        {/* {!isIntroduction && <Disqus title={title} identifier={slug} />} */}
       </Footer>
     )
 
     const contents = <MarkdownProvider>{children}</MarkdownProvider>
-
-    // const contents = (
-    //   <>
-    //     <PageHeader
-    //       title={title}
-    //       // author={author.name || '@dvnabbott'}
-    //       // authorURL={author.url || 'https://twitter.com/dvnabbott'}
-    //     />
-    //     <MarkdownProvider>{children}</MarkdownProvider>
-    //   </>
-    // )
 
     return (
       <>

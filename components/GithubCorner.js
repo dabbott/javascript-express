@@ -13,7 +13,7 @@ export default class GithubCorner extends React.Component {
           height="80"
           viewBox="0 0 250 250"
           style={{
-            fill: '#263053',
+            fill: '#333',
             color: '#fff',
             position: 'absolute',
             top: 0,

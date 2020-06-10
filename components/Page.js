@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Banner from './Banner'
-import Title from './Title'
-import Subtitle from './Subtitle'
 import ShowAt from './ShowAt'
 import HideAt from './HideAt'
 import MarkdownProvider from './MarkdownProvider'
+import logo from '../images/logo.svg'
+import textStyles from '../styles/textStyles'
 
 const Container = styled.div({
   flex: '1 1 auto',
@@ -45,7 +45,9 @@ const FooterContainer = styled.div({
   flexDirection: 'column',
 })
 
-import logo from '../images/logo.svg'
+const Title = styled.span(textStyles.title)
+
+const Subtitle = styled.span(textStyles.subtitle)
 
 export default class Page extends Component {
   render() {
