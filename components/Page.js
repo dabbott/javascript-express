@@ -204,7 +204,11 @@ const Page = ({ router, children }) => {
               </Banner>
             )}
             <PageContentContainer>
-              {isIntroduction && <GithubRibbon title={'View on GitHub'} />}
+              {isIntroduction && (
+                <DesktopOnly>
+                  <GithubRibbon title={'View on GitHub'} />
+                </DesktopOnly>
+              )}
               {children}
             </PageContentContainer>
             <NavigationFooter
