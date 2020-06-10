@@ -1,5 +1,3 @@
-const withCSS = require('@zeit/next-css')
-
 const withImages = require('next-images')
 
 const withMDX = require('@next/mdx')({
@@ -25,10 +23,8 @@ const withRawExampleLoader = (nextConfig = {}) => {
 
 module.exports = withRawExampleLoader(
   withImages(
-    withCSS(
-      withMDX({
-        pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-      })
-    )
+    withMDX({
+      pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+    })
   )
 )

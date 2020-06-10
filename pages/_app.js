@@ -5,7 +5,7 @@ import '../styles/main.css'
 import React from 'react'
 import App from 'next/app'
 import Router from 'next/router'
-import ChapterPage from '../components/Page'
+import Page from '../components/Page'
 import { pageView } from '../utils/Analytics'
 
 export default class MyApp extends App {
@@ -16,9 +16,9 @@ export default class MyApp extends App {
       return <Component {...pageProps} />
     } else {
       return (
-        <ChapterPage>
+        <Page>
           <Component {...pageProps} />
-        </ChapterPage>
+        </Page>
       )
     }
   }
