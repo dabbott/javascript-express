@@ -1,6 +1,6 @@
 const withImages = require('next-images')
 
-const withMDX = require('@next/mdx')({
+const withMDX = require('next-mdx-frontmatter')({
   extension: /\.mdx?$/,
 })
 

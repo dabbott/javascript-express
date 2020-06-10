@@ -1,0 +1,8 @@
+{
+  "order": [
+    "transactions",
+    "transactions_solution",
+    "price_api",
+    "price_api_solution"
+  ]
+}

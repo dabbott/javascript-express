@@ -1,0 +1,12 @@
+{
+  "order": [
+    "arrays",
+    "objects",
+    "sets",
+    "maps",
+    "dates",
+    "regular_expressions",
+    "math",
+    "json"
+  ]
+}

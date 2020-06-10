@@ -1,0 +1,3 @@
+{
+  "order": ["primitive_types", "object_types", "nullability", "checking_types"]
+}

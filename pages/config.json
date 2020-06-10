@@ -1,0 +1,13 @@
+{
+  "order": [
+    "types",
+    "syntax",
+    "standard_library",
+    "functions",
+    "classes",
+    "type_declarations",
+    "async_control_flow",
+    "modules",
+    "exercises"
+  ]
+}

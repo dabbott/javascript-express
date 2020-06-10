@@ -1,0 +1,13 @@
+{
+  "order": [
+    "constants",
+    "enums",
+    "arrays",
+    "objects",
+    "interfaces",
+    "unions",
+    "generics",
+    "any_and_unknown",
+    "guards_and_assertions"
+  ]
+}

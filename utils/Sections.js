@@ -1,3 +1,7 @@
+import sitemap from '../sitemap'
+
+let sections = sitemap
+
 function formatSlug(string) {
   return string.replace(/ /g, '_').toLowerCase()
 }
@@ -13,90 +17,42 @@ function createSection(folder, title, nestedTitle) {
   return { depth: nestedTitle ? 2 : 1, title: nestedTitle || title, slug }
 }
 
-let sections = [
-  {
-    hidden: true,
-    depth: 0,
-    title: 'JavaScript Express',
-    slug: '',
-  },
+// createSection('Environment'),
+// createSection('Environment', 'Quick Start'),
 
-  // createSection('Environment'),
-  // createSection('Environment', 'Quick Start'),
+// createSection('Standard Library', 'Arrays', 'Adding and Removing'),
+// createSection('Standard Library', 'Arrays', 'Transformations'),
+// createSection('Standard Library', 'Arrays', 'Searching'),
 
-  createSection('Types'),
-  createSection('Types', 'Primitive Types'),
-  createSection('Types', 'Object Types'),
-  createSection('Types', 'Nullability'),
-  createSection('Types', 'Checking Types'),
+// createSection('Functions'),
+// createSection('Functions', 'Syntax'),
+// createSection('Functions', 'Arguments'),
+// createSection('Functions', 'Returning'), // No tuples, use arrays & objects
+// createSection('Functions', 'Callbacks'),
+// createSection('Functions', 'Scope'),
+// createSection('Functions', 'Context'),
 
-  createSection('Syntax'),
-  createSection('Syntax', 'Variables'),
-  createSection('Syntax', 'Equality'),
-  createSection('Syntax', 'Logical Operators'),
-  createSection('Syntax', 'Iteration'),
-  createSection('Syntax', 'Spread'),
+// createSection('Async Control Flow'), // No threads. Callbacks & promises
+// createSection('Async Control Flow', 'Callbacks'),
+// createSection('Async Control Flow', 'Event Listeners'),
+// createSection('Async Control Flow', 'Event Loop'), // setTimeout, setInterval
+// createSection('Async Control Flow', 'Promises'),
+// createSection('Async Control Flow', 'Async and Await'),
+// createSection('Async Control Flow', 'Fetch'),
 
-  createSection('Standard Library'),
-  createSection('Standard Library', 'Arrays'),
-  createSection('Standard Library', 'Arrays', 'Adding and Removing'),
-  createSection('Standard Library', 'Arrays', 'Transformations'),
-  createSection('Standard Library', 'Arrays', 'Searching'),
-  createSection('Standard Library', 'Objects'),
-  createSection('Standard Library', 'Sets'),
-  createSection('Standard Library', 'Maps'),
-  createSection('Standard Library', 'Dates'),
-  createSection('Standard Library', 'Regular Expressions'),
-  createSection('Standard Library', 'Math'),
-  createSection('Standard Library', 'JSON'),
+// createSection('Modules'),
+// createSection('Modules', 'Syntax'),
+// createSection('Modules', 'Package Managers'),
 
-  createSection('Functions'),
-  createSection('Functions', 'Syntax'),
-  createSection('Functions', 'Arguments'),
-  createSection('Functions', 'Returning'), // No tuples, use arrays & objects
-  createSection('Functions', 'Callbacks'),
-  createSection('Functions', 'Scope'),
-  createSection('Functions', 'Context'),
+// createSection('Node'),
 
-  createSection('Classes'), // Constructors, instantiation, new & instanceof
-  createSection('Classes', 'Properties'), // Getters & setters, default values, static
-  createSection('Classes', 'Methods'), // Scope, super
-  createSection('Classes', 'Inheritance'), // Super
+// createSection('Exercises'),
+// createSection('Exercises', 'Transactions'),
+// createSection('Exercises', 'Transactions Solution'),
+// createSection('Exercises', 'Price API'),
+// createSection('Exercises', 'Price API Solution'),
 
-  createSection('Type Declarations'),
-  createSection('Type Declarations', 'Constants'),
-  createSection('Type Declarations', 'Enums'),
-  createSection('Type Declarations', 'Arrays'),
-  createSection('Type Declarations', 'Objects'),
-  createSection('Type Declarations', 'Interfaces'),
-  createSection('Type Declarations', 'Unions'),
-  createSection('Type Declarations', 'Generics'),
-  createSection('Type Declarations', 'Any and Unknown'),
-  createSection('Type Declarations', 'Guards and Assertions'),
-
-  createSection('Async Control Flow'), // No threads. Callbacks & promises
-  createSection('Async Control Flow', 'Callbacks'),
-  createSection('Async Control Flow', 'Event Listeners'),
-  createSection('Async Control Flow', 'Event Loop'), // setTimeout, setInterval
-  createSection('Async Control Flow', 'Promises'),
-  createSection('Async Control Flow', 'Async and Await'),
-  createSection('Async Control Flow', 'Fetch'),
-
-  createSection('Modules'),
-  createSection('Modules', 'Syntax'),
-  createSection('Modules', 'Package Managers'),
-
-  createSection('Node'),
-
-  createSection('Exercises'),
-  createSection('Exercises', 'Transactions'),
-  createSection('Exercises', 'Transactions Solution'),
-  createSection('Exercises', 'Price API'),
-  createSection('Exercises', 'Price API Solution'),
-  // createSection('Exercises', 'B'),
-
-  // createSection('Syntax', 'Fancy Syntax'),
-]
+// createSection('Syntax', 'Fancy Syntax'),
 
 // Add section numbers. I use semver naming, since it's easy to remember
 // how the sections should be numbered and arranged: {major}.{minor}.{patch}.

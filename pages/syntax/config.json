@@ -1,0 +1,3 @@
+{
+  "order": ["variables", "equality", "logical_operators", "iteration", "spread"]
+}
