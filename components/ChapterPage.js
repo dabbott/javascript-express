@@ -16,6 +16,7 @@ import NavigatorButton from './NavigatorButton'
 import Page from './Page'
 import ShowAt from './ShowAt'
 import Sidebar from './Sidebar'
+import colors from '../styles/colors'
 
 const Container = styled.div({
   display: 'flex',
@@ -46,7 +47,7 @@ const Content = styled.div({
 
 const SidebarContainer = styled.div({
   flex: '0 0 280px',
-  borderRight: '1px solid rgba(220,220,220,0.5)',
+  borderRight: `1px solid ${colors.divider}`,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'stretch',

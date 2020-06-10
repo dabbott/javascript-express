@@ -4,11 +4,12 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 import { chapters } from '../utils/Sections'
+import colors from '../styles/colors'
 
 const SidebarTitle = styled.div(({ centered }) => ({
   textAlign: centered ? 'center' : 'left',
   margin: '0',
-  borderBottom: '1px solid rgba(220,220,220,0.5)',
+  borderBottom: `1px solid ${colors.divider}`,
 }))
 
 const SidebarTitleText = styled.a(({ centered }) => ({

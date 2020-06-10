@@ -6,6 +6,7 @@ import HideAt from './HideAt'
 import MarkdownProvider from './MarkdownProvider'
 import logo from '../images/logo.svg'
 import textStyles from '../styles/textStyles'
+import colors from '../styles/colors'
 
 const Container = styled.div({
   flex: '1 1 auto',
@@ -17,7 +18,7 @@ const Container = styled.div({
 })
 
 const ContentContainer = styled.div({
-  borderTop: '1px solid rgba(220,220,220,0.5)',
+  borderTop: `1px solid ${colors.divider}`,
   backgroundColor: 'white',
   padding: '0px 60px 40px 60px',
 })
