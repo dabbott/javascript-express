@@ -163,7 +163,7 @@ const Page = ({ router, children }) => {
 
   if (!section) return `Could not find page: ${slug}`
 
-  const title = section.fullTitle || section.title
+  const title = section.title
   const nextSection = getNextSection(slug)
   const previousSection = getPreviousSection(slug)
 

@@ -1,38 +1,28 @@
-## About
+# JavaScript Express
 
-A guide and reference to help people get started with React Native.
+A guide and reference for learning JavaScript & TypeScript.
 
-## Installation
+The production deployment of this app is running here: http://www.javascript.express.
+
+Written by Devin Abbott ([@dvnabbott](http://twitter.com/dvnabbott)).
+
+## Development
+
+### Installation
 
 ```bash
 yarn
 ```
 
-## Running Dev Server
+### Running development server
 
 ```bash
 yarn dev
 ```
 
-## Building and Running Production Server
+### Building and running production server
 
 ```bash
 yarn build
 yarn start
 ```
-
-## Demo
-
-The production version of this app is running [here](http://www.javascript.express).
-
-## Contributing
-
-Please contribute!
-
-## License
-
-MIT, Copyright (c) 2020 Devin Abbott
-
-## Author
-
-Devin Abbott, [@dvnabbott](http://twitter.com/dvnabbott)
