@@ -1,3 +1,4 @@
+import { MDXProvider } from '@mdx-js/react'
 import { withRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -11,8 +12,8 @@ import {
 } from '../utils/Sections'
 import HamburgerButton from './HamburgerButton'
 import HideAt from './HideAt'
-import MarkdownProvider from './MarkdownProvider'
-import NavigatorButton from './NavigatorButton'
+import PageComponents from './PageComponents'
+import NavigatorButton from './NavigationFooter'
 import Page from './Page'
 import ShowAt from './ShowAt'
 import Sidebar from './Sidebar'
@@ -67,13 +68,6 @@ const MenuContainer = styled.div({
   overflowY: 'auto',
 })
 
-const NavigatorButtonContainer = styled.div({
-  padding: '0 60px 40px 60px',
-  [mediaQuery.small]: {
-    padding: '10px 0',
-  },
-})
-
 const MenuButtonContainer = styled.div({
   position: 'absolute',
   top: '10px',
@@ -81,7 +75,21 @@ const MenuButtonContainer = styled.div({
   zIndex: 12000,
 })
 
-const Footer = styled.div({})
+const Footer = styled.div({
+  display: 'flex',
+  flex: '0 0 auto',
+})
+
+const GithubRibbon = ({ title }) => (
+  <a
+    className="github-fork-ribbon"
+    href="https://github.com/dabbott/javascript-express"
+    data-ribbon={title}
+    title={title}
+  >
+    {title}
+  </a>
+)
 
 class ChapterPage extends React.Component {
   state = {
@@ -121,24 +129,22 @@ class ChapterPage extends React.Component {
 
     if (!section) return `Could not find page: ${slug}`
 
-    const { author = {} } = section
-
     const title = section.fullTitle || section.title
     const nextSection = getNextSection(slug)
     const previousSection = getPreviousSection(slug)
 
     const footer = (
       <Footer>
-        <NavigatorButtonContainer>
-          <NavigatorButton
-            nextSection={nextSection}
-            previousSection={previousSection}
-          />
-        </NavigatorButtonContainer>
+        <NavigatorButton
+          nextSection={nextSection}
+          previousSection={previousSection}
+        />
       </Footer>
     )
 
-    const contents = <MarkdownProvider>{children}</MarkdownProvider>
+    const contents = (
+      <MDXProvider components={PageComponents}>{children}</MDXProvider>
+    )
 
     return (
       <>
@@ -170,20 +176,8 @@ class ChapterPage extends React.Component {
                 </ShowAt>
               </MenuButtonContainer>
               {isIntroduction ? (
-                <Page
-                  title={'JavaScript Express'}
-                  footer={footer}
-                  bannerHeight={560}
-                  showLogo
-                >
-                  <a
-                    className="github-fork-ribbon"
-                    href="https://github.com/dabbott/javascript-express"
-                    data-ribbon="Fork me on GitHub"
-                    title="Fork me on GitHub"
-                  >
-                    Fork me on GitHub
-                  </a>
+                <Page title={'JavaScript Express'} footer={footer} showLogo>
+                  <GithubRibbon title={'View on GitHub'} />
                   {contents}
                 </Page>
               ) : (
