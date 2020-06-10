@@ -5,7 +5,7 @@ import Slideshow from '../../components/Slideshow'
 export default () => (
   <Slideshow
     sources={[
-      require('!!babel-loader!spectacle-mdx-loader!./index.mdx'),
+      require('!!babel-loader!spectacle-mdx-loader!../types.mdx'),
       require('!!babel-loader!spectacle-mdx-loader!./primitive_types.mdx'),
       require('!!babel-loader!spectacle-mdx-loader!./object_types.mdx'),
       require('!!babel-loader!spectacle-mdx-loader!./nullability.mdx'),
