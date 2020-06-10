@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactNativeWebPlayer from 'react-native-web-player'
 import styled from 'styled-components'
-import isMobile from '../utils/isMobile'
 
 const playerStyles = {
   tab: {
@@ -141,30 +140,26 @@ export default class WebPlayer extends React.Component {
       workspaceCSS,
     }
 
-    if (isMobile) {
-      params.panes = ['editor']
+    if (showTranspiler) {
+      params.panes = ['editor', 'transpiler']
     } else {
-      if (showTranspiler) {
-        params.panes = ['editor', 'transpiler']
-      } else {
-        params.panes = ['editor', 'player']
-      }
+      params.panes = ['editor', 'player']
+    }
 
-      if (showConsole) {
-        params.console = {
-          enabled: true,
-          visible: true,
-          maximized: true,
-          collapsible: false,
-        }
-        params.styles = {
-          ...playerStyles,
-          playerPane: {
-            ...playerStyles.playerPane,
-            marginLeft: 0,
-            marginRight: 0,
-          },
-        }
+    if (showConsole) {
+      params.console = {
+        enabled: true,
+        visible: true,
+        maximized: true,
+        collapsible: false,
+      }
+      params.styles = {
+        ...playerStyles,
+        playerPane: {
+          ...playerStyles.playerPane,
+          marginLeft: 0,
+          marginRight: 0,
+        },
       }
     }
 
