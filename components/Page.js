@@ -8,11 +8,7 @@ import logo from '../images/logo.svg'
 import colors from '../styles/colors'
 import textStyles from '../styles/textStyles'
 import mediaQuery from '../utils/mediaQuery'
-import {
-  getNextSection,
-  getPreviousSection,
-  getSection,
-} from '../utils/Sections'
+import { getSection } from '../utils/Sections'
 import HamburgerButton from './HamburgerButton'
 import NavigationFooter from './NavigationFooter'
 import PageComponents from './PageComponents'
@@ -164,8 +160,8 @@ const Page = ({ router, children }) => {
   if (!section) return `Could not find page: ${slug}`
 
   const title = section.title
-  const nextSection = getNextSection(slug)
-  const previousSection = getPreviousSection(slug)
+  const nextSection = getSection(section.next)
+  const previousSection = getSection(section.previous)
 
   return (
     <MDXProvider components={PageComponents}>

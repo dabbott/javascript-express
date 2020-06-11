@@ -2,6 +2,7 @@
 
 const fs = require('fs')
 const path = require('path')
+const util = require('util')
 const matter = require('gray-matter')
 
 /**
@@ -45,72 +46,104 @@ function sortFiles(directoryPath, files) {
 }
 
 /**
- * @typedef {{ file: string, children: string[] }} TreeNode
+ * @typedef {{ file: string, title: string, slug: string, previous?: string, next?: string, children: TreeNode[] }} TreeNode
  */
 
 /**
  * @param {string} rootPath
+ * @param {string[]} pathComponents
  * @returns {TreeNode[]}
  */
-function readTree(rootPath) {
+function readTree(rootPath, pathComponents) {
   const files = fs.readdirSync(rootPath)
-  const pages = sortFiles(rootPath, files.filter(f => f.endsWith('.mdx')))
+
+  const pages = sortFiles(
+    rootPath,
+    files.filter(f => f.endsWith('.mdx') && f !== 'index.mdx')
+  )
+
   const directories = files.filter(f =>
     fs.statSync(path.join(rootPath, f)).isDirectory()
   )
 
   return pages.map(file => {
     const basename = path.basename(file, '.mdx')
+    const components = [...pathComponents, basename]
 
     return {
       file,
-      ...(directories.includes(basename) && {
-        children: readTree(path.join(rootPath, basename)),
-      }),
+      title: formatTitle(basename),
+      slug: components.map(formatSlug).join('/'),
+      parent: components
+        .slice(0, -1)
+        .map(formatSlug)
+        .join('/'),
+      children: directories.includes(basename)
+        ? readTree(path.join(rootPath, basename), components)
+        : [],
     }
   })
 }
 
 /**
- * @param {TreeNode} node
- * @returns {string[][]}
+ * @param {TreeNode[]} nodes
+ * @param {string} previous
+ * @param {string | undefined} next
+ * @returns {TreeNode[]}
  */
-function flattenNode(node) {
-  const { file, children = [] } = node
+function connectNodes(nodes, previous, next) {
+  nodes.forEach((node, index) => {
+    const isFirst = index === 0
+    const isLast = index === nodes.length - 1
 
-  return [[file], ...children.flatMap(flattenNode).map(list => [file, ...list])]
+    if (isFirst) {
+      node.previous = previous
+    } else {
+      node.previous = nodes[index - 1].slug
+    }
+
+    if (isLast) {
+      node.next = next
+
+      connectNodes(node.children, node.slug)
+    } else {
+      const nextNode = nodes[index + 1]
+
+      if (node.children.length === 0) {
+        node.next = nextNode.slug
+      } else {
+        node.next = node.children[0].slug
+      }
+
+      connectNodes(node.children, node.slug, nextNode.slug)
+    }
+  })
 }
 
 const pagesPath = path.join(__dirname, 'pages')
 
-const pagesTree = readTree(pagesPath)
+const pagesTree = readTree(pagesPath, [])
 
-const pages = pagesTree.flatMap(flattenNode)
+connectNodes(pagesTree, '')
 
-const sections = [
-  {
-    hidden: true,
-    depth: 0,
-    title: 'JavaScript Express',
-    slug: '',
-  },
-  ...pages
-    .filter(page => !(page.length === 1 && page[0] === 'index.mdx'))
-    .map(page => {
-      const components = page.map(component => path.basename(component, '.mdx'))
+// console.log(util.inspect(pagesTree, false, null, true))
 
-      return createSection(components)
-    }),
-]
-
-module.exports = sections
+module.exports = pagesTree
 
 // Helpers
 
+/**
+ * @param {string} string
+ * @returns {string}
+ */
 function formatSlug(string) {
   return string.replace(/ /g, '_').toLowerCase()
 }
 
+/**
+ * @param {string} string
+ * @returns {string}
+ */
 function formatTitle(string) {
   return string
     .split('_')

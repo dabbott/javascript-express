@@ -1,9 +1,9 @@
-import Router, { withRouter } from 'next/router'
+import { withRouter } from 'next/router'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import { chapters } from '../utils/Sections'
+import sitemap from '../utils/Sections'
 import colors from '../styles/colors'
 
 const SidebarTitle = styled.div(({ centered }) => ({
@@ -109,13 +109,10 @@ class Sidebar extends Component {
     const expanded = {}
 
     if (currentSection) {
-      const { depth, slug, parent } = currentSection
+      const { slug, parent } = currentSection
 
-      if (depth === 1) {
-        expanded[slug] = true
-      } else if (depth === 2) {
-        expanded[parent] = true
-      }
+      expanded[slug] = true
+      expanded[parent] = true
     }
 
     return { expanded }
@@ -129,41 +126,28 @@ class Sidebar extends Component {
       },
     })
 
-  renderRow = (
-    { title, slug, depth, major, minor, patch, parent },
-    i,
-    list
-  ) => {
+  renderRow = ({ title, slug, parent, children, indexPath }) => {
     const { router, centered } = this.props
     const { expanded } = this.state
 
-    if (depth === 2 && !expanded[parent]) {
+    // Hide if collapsed parent
+    if (indexPath.length > 2 && !expanded[parent]) {
       return null
     }
 
-    let numeral = `${major}`
-
-    if (depth >= 1) {
-      numeral += `.${minor}`
-    }
-
-    if (depth >= 2) {
-      numeral += `.${patch}`
-    }
-
-    const majorOrMinor = depth === 0 || depth === 1
-    const hasChildSection =
-      depth === 1 && list[i + 1] && list[i + 1].depth === 2
+    let numeral = indexPath.join('.')
 
     const linkPath = `/${slug}`
 
     return (
       <SidebarRow
-        small={!majorOrMinor}
+        small={indexPath.length > 2}
         centered={centered}
-        key={`${major}.${minor}.${patch}`}
+        key={numeral}
       >
-        <Numeral centered={centered}>{majorOrMinor ? numeral : ''}</Numeral>
+        <Numeral centered={centered}>
+          {indexPath.length <= 2 ? numeral : ''}
+        </Numeral>
 
         <Link href={linkPath}>
           <SidebarLinkText isActive={router.asPath === linkPath}>
@@ -171,20 +155,34 @@ class Sidebar extends Component {
           </SidebarLinkText>
         </Link>
 
-        {hasChildSection && (
-          <ExpandButton
-            active={expanded[slug]}
-            onClick={this.onToggleSection.bind(this, slug)}
-          >
-            ...
-          </ExpandButton>
-        )}
+        {indexPath.length > 1 &&
+          children.length > 0 && (
+            <ExpandButton
+              active={expanded[slug]}
+              onClick={this.onToggleSection.bind(this, slug)}
+            >
+              ...
+            </ExpandButton>
+          )}
       </SidebarRow>
     )
   }
 
   render() {
     const { centered } = this.props
+
+    /**
+     * @param {sitemap.TreeNode} nodes
+     * @param {number[]} indexPath
+     */
+    const createRows = (node, indexPath) => {
+      return [
+        { ...node, indexPath },
+        ...node.children.flatMap((child, index) =>
+          createRows(child, [...indexPath, index + 1])
+        ),
+      ]
+    }
 
     return (
       <>
@@ -196,13 +194,15 @@ class Sidebar extends Component {
           </Link>
         </SidebarTitle>
         <SidebarRowsContainer centered={centered} tabIndex="-1">
-          {chapters.map(group => {
-            return [
-              group.map(this.renderRow),
-              <DotContainer key={'dot-container'}>
-                <Dot />
-              </DotContainer>,
-            ]
+          {sitemap.map((node, index) => {
+            return (
+              <React.Fragment key={index.toString()}>
+                {createRows(node, [index + 1]).map(this.renderRow)}
+                <DotContainer key={`dot`}>
+                  <Dot />
+                </DotContainer>
+              </React.Fragment>
+            )
           })}
         </SidebarRowsContainer>
       </>
