@@ -8,11 +8,11 @@ import logo from '../images/logo.svg'
 import colors from '../styles/colors'
 import textStyles from '../styles/textStyles'
 import mediaQuery from '../utils/mediaQuery'
-import { getSection } from '../utils/Sections'
 import HamburgerButton from './HamburgerButton'
 import NavigationFooter from './NavigationFooter'
 import PageComponents from './PageComponents'
 import Sidebar from './Sidebar'
+import sitemap from '../sitemap'
 
 const Container = styled.div({
   flex: '1 1 auto',
@@ -140,6 +140,21 @@ const GithubRibbon = ({ title }) => (
     {title}
   </a>
 )
+
+/**
+ * @param {string} pathname
+ * @param {sitemap.TreeNode} node
+ * @returns {sitemap.TreeNode | undefined}
+ */
+export function getSection(pathname, node = sitemap) {
+  if (node.slug === pathname) return node
+
+  return node.children.reduce((result, child) => {
+    if (result) return result
+
+    return getSection(pathname, child)
+  }, undefined)
+}
 
 const Page = ({ router, children }) => {
   const [showSidebar, setShowSidebar] = useState(true)

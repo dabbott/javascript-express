@@ -6,6 +6,25 @@ const util = require('util')
 const matter = require('gray-matter')
 
 /**
+ * @param {string} string
+ * @returns {string}
+ */
+function formatSlug(string) {
+  return string.replace(/ /g, '_').toLowerCase()
+}
+
+/**
+ * @param {string} string
+ * @returns {string}
+ */
+function formatTitle(string) {
+  return string
+    .split('_')
+    .map(component => component.slice(0, 1).toUpperCase() + component.slice(1))
+    .join(' ')
+}
+
+/**
  * @param {string} filePath
  * @returns {{ order?: number }}
  */
@@ -46,7 +65,7 @@ function sortFiles(directoryPath, files) {
 }
 
 /**
- * @typedef {{ file: string, title: string, slug: string, previous?: string, next?: string, children: TreeNode[] }} TreeNode
+ * @typedef {{ file: string, title: string, slug: string, parent?: string, previous?: string, next?: string, children: TreeNode[] }} TreeNode
  */
 
 /**
@@ -122,40 +141,21 @@ function connectNodes(nodes, previous, next) {
 
 const pagesPath = path.join(__dirname, 'pages')
 
-const pagesTree = readTree(pagesPath, [])
+const topLevelPages = readTree(pagesPath, [])
 
-connectNodes(pagesTree, '')
+connectNodes(topLevelPages, '')
+
+/**
+ * @type {TreeNode}
+ */
+const pagesTree = {
+  file: 'index.mdx',
+  slug: '',
+  title: 'JavaScript Express',
+  children: topLevelPages,
+  next: topLevelPages[0] ? topLevelPages[0].slug : undefined,
+}
 
 // console.log(util.inspect(pagesTree, false, null, true))
 
 module.exports = pagesTree
-
-// Helpers
-
-/**
- * @param {string} string
- * @returns {string}
- */
-function formatSlug(string) {
-  return string.replace(/ /g, '_').toLowerCase()
-}
-
-/**
- * @param {string} string
- * @returns {string}
- */
-function formatTitle(string) {
-  return string
-    .split('_')
-    .map(component => component.slice(0, 1).toUpperCase() + component.slice(1))
-    .join(' ')
-}
-
-/**
- * @param {string[]} components
- */
-function createSection(components) {
-  const title = formatTitle(components[components.length - 1])
-  const slug = components.map(formatSlug).join('/')
-  return { depth: components.length - 1, title, slug }
-}

@@ -1,9 +1,8 @@
+import Link from 'next/link'
 import { withRouter } from 'next/router'
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Link from 'next/link'
-
-import sitemap from '../utils/Sections'
+import sitemap from '../sitemap'
 import colors from '../styles/colors'
 
 const SidebarTitle = styled.div(({ centered }) => ({
@@ -91,6 +90,19 @@ const ExpandButton = styled.div(({ active }) => ({
   opacity: active ? '0.5' : '1',
 }))
 
+/**
+ * @param {sitemap.TreeNode} nodes
+ * @param {number[]} indexPath
+ */
+const createRows = (node, indexPath) => {
+  return [
+    { ...node, indexPath },
+    ...node.children.flatMap((child, index) =>
+      createRows(child, [...indexPath, index + 1])
+    ),
+  ]
+}
+
 class Sidebar extends Component {
   constructor(props) {
     super()
@@ -171,30 +183,17 @@ class Sidebar extends Component {
   render() {
     const { centered } = this.props
 
-    /**
-     * @param {sitemap.TreeNode} nodes
-     * @param {number[]} indexPath
-     */
-    const createRows = (node, indexPath) => {
-      return [
-        { ...node, indexPath },
-        ...node.children.flatMap((child, index) =>
-          createRows(child, [...indexPath, index + 1])
-        ),
-      ]
-    }
+    const { title, children } = sitemap
 
     return (
       <>
         <SidebarTitle centered={centered}>
           <Link href={'/'}>
-            <SidebarTitleText centered={centered}>
-              JavaScript Express
-            </SidebarTitleText>
+            <SidebarTitleText centered={centered}>{title}</SidebarTitleText>
           </Link>
         </SidebarTitle>
         <SidebarRowsContainer centered={centered} tabIndex="-1">
-          {sitemap.map((node, index) => {
+          {children.map((node, index) => {
             return (
               <React.Fragment key={index.toString()}>
                 {createRows(node, [index + 1]).map(this.renderRow)}
