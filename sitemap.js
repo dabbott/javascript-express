@@ -89,9 +89,11 @@ function readTree(rootPath, pathComponents) {
     const basename = path.basename(file, '.mdx')
     const components = [...pathComponents, basename]
 
+    const frontmatter = readFrontMatter(path.join(rootPath, file))
+
     return {
       file,
-      title: formatTitle(basename),
+      title: frontmatter.title || formatTitle(basename),
       slug: components.map(formatSlug).join('/'),
       parent: components
         .slice(0, -1)
