@@ -1,0 +1,24 @@
+import args from '../../examples/files/functions/arguments.ts'
+import argumentsArray from '../../examples/files/functions/argumentsArray.ts'
+
+# Arguments
+
+Function arguments can be optional or have default values.
+
+<Example
+  title={"Arguments"}
+  code={args}
+/>
+
+---
+
+## Arguments array
+
+We can access all arguments in an array using rest `...` syntax.
+
+Functions declared with the `function` keyword also have `arguments` object (not an array) an implicitly added to scope, but it's best to use `...` instead.
+
+<Example
+  title={"Arguments array"}
+  code={argumentsArray}
+/>

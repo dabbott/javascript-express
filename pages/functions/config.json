@@ -1,0 +1,9 @@
+{
+  "order": [
+    "arguments",
+    "returning",
+    "higher_order_functions",
+    "scope",
+    "context"
+  ]
+}

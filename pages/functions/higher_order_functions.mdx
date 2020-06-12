@@ -1,0 +1,38 @@
+import callbacks from '../../examples/files/functions/callbacks.ts'
+import higherOrder from '../../examples/files/functions/higherOrder.ts'
+
+# Higher Order Functions
+
+A [higher order function](https://en.wikipedia.org/wiki/Higher-order_function) is a function that takes a function as an argument or returns a function.
+
+Let's look at some common examples.
+
+---
+
+## Callbacks
+
+Callback functions are arguments passed to a function that are then called when some action or event occurs.
+
+This is an extremely common pattern in JavaScript environments like the browser, `node`, and React Native.
+
+> Some functions accept several callback functions for handling different actions.
+
+<Example
+  title={"Callbacks"}
+  code={callbacks}
+/>
+
+---
+
+## Functional programming
+
+Programming in a "functional" style, by composing stateless, side-effect free functions, is very common in JavaScript.
+
+We've already seen many standard library examples, like `map` and `reduce`. Here's an example of how we might write `map`.
+
+> Higher order functions like `map` are often implemented using the stateful aspects of JavaScript, e.g. loops.
+
+<Example
+  title={"Functional programming"}
+  code={higherOrder}
+/>

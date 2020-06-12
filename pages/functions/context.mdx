@@ -1,0 +1,50 @@
+import globalThis from '../../examples/files/functions/globalThis.ts'
+import functionThis from '../../examples/files/functions/functionThis.ts'
+import automaticThis from '../../examples/files/functions/automaticThis.ts'
+
+# Context
+
+The keyword `this` refers to the "current execution context", or just the "context" for short.
+
+We mostly use `this` in classes — its behavior is typically not helpful and somewhat error-prone elsewhere.
+
+---
+
+## Global `this`
+
+Outside of any function, the current execution context is an environment-specific global variable (`window` in the browser, `global` in node).
+
+<Example
+  title={"Global this"}
+  code={globalThis}
+/>
+
+---
+
+## Function `this`
+
+Inside a function declared with `function`, `this` refers to an arbitrary value set by the caller.
+
+Inside a function declared with `=>`, `this` refers to whatever it was in the parent scope.
+
+We can specify the `this` value with `.call()`.
+
+<Example
+  title={"Function this"}
+  code={functionThis}
+/>
+
+---
+
+## Automatic `this`
+
+Functions that are properties of objects will have their `this` set to the object when called with `.` syntax. This applies to instances of classes too.
+
+This is the main use case for `this`.
+
+> Depending on your TypeScript compiler settings, you can force the type of `this` to be defined, which helps avoid errors.
+
+<Example
+  title={"Automatic this"}
+  code={automaticThis}
+/>
