@@ -9,6 +9,7 @@ export default {
     color: colors.text,
     [mediaQuery.small]: {
       fontSize: '36px',
+      fontWeight: '300',
     },
   },
   subtitle: {
