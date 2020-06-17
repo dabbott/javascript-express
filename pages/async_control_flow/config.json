@@ -1,0 +1,9 @@
+{
+  "order": [
+    "event_loop",
+    "listeners_and_emitters",
+    "promises",
+    "async_and_await",
+    "fetch"
+  ]
+}

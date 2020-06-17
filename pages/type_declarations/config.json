@@ -8,6 +8,7 @@
     "unions",
     "generics",
     "any_and_unknown",
-    "guards_and_assertions"
+    "guards_and_assertions",
+    "never"
   ]
 }

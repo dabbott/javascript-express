@@ -1,0 +1,72 @@
+import creatingPromises from '../../examples/files/async_control_flow/creatingPromises.ts'
+import chainingPromises from '../../examples/files/async_control_flow/chainingPromises.ts'
+import sleep from '../../examples/files/async_control_flow/sleep.ts'
+import multiplePromises from '../../examples/files/async_control_flow/multiplePromises.ts'
+
+# Promises
+
+Promises are an abstraction for asynchronous control flow — they're a proxy object for a value that may not exist yet. A `Promise` is always in 1 of 3 states internally:
+
+- Pending
+- Resolved
+- Rejected
+
+A resolved or rejected promise optionally contains a value. 
+
+Every promise starts in the pending state, and can only transition once (i.e. a resolved promise never becomes rejected later).
+
+> Promises are similar to futures and deferred values in other languages (https://en.wikipedia.org/wiki/Futures_and_promises).
+
+---
+
+## Creating promises
+
+We can immediately wrap any value in a promise using the static `Promise.resolved` and `Promise.rejected` methods.
+
+More commonly, we use the constructor, which we can `resolve` or `reject` at any point in the future.
+
+<Example
+  title={"Creating promises"}
+  code={creatingPromises}
+/>
+
+---
+
+## Chaining promises
+
+We can use `.then` and `.catch` to chain operations together. These methods both return _new_ promises.
+
+If we throw an error or return a rejected promise, all `.then` calls will be skipped until a `.catch` is found.
+
+> By convention, a rejected promise should contain an error object rather than an arbitrary value. Throwing an error implicitly creates a rejected promise.
+
+<Example
+  title={"Chaining promises"}
+  code={chainingPromises}
+/>
+
+---
+
+## Handling events
+
+So far, we've been using promises synchronously, but we typically use them asynchronously while working with the event loop. 
+
+For example, we might wrap a `setTimeout` call in a promise.
+
+> Anywhere we use a callback that will _only be called once_ we should consider using a `Promise` instead.
+
+<Example
+  title={"Handling events"}
+  code={sleep}
+/>
+
+## Multiple promises
+
+We can use promises to run multiple asynchronous tasks in parallel.
+
+`Promise.all` returns a promise that resolves if all promises in an array resolve, while `Promise.race` resolves if a single promise in the array to resolve.
+
+<Example
+  title={"Multiple promises"}
+  code={multiplePromises}
+/>

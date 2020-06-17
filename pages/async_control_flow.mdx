@@ -1,1 +1,7 @@
 # Async Control Flow
+
+JavaScript engines are built around a single main [event loop](https://en.wikipedia.org/wiki/Event_loop), which is a queue of functions. When a program starts, the engine evaluates all JavaScript code at the top-level scope and then goes "idle" until new "events" (functions) are added to the event loop.
+
+New events may be inserted into the event loop at any time, either by our code or the JavaScript environment (usually in response to I/O), which are then executed in sequence.
+
+We use callback functions and Promises to work with the event loop.

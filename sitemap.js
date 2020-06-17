@@ -18,9 +18,15 @@ function formatSlug(string) {
  * @returns {string}
  */
 function formatTitle(string) {
+  function titleCase(component) {
+    if (component === 'or' || component === 'and') return component
+
+    return component.slice(0, 1).toUpperCase() + component.slice(1)
+  }
+
   return string
     .split('_')
-    .map(component => component.slice(0, 1).toUpperCase() + component.slice(1))
+    .map(titleCase)
     .join(' ')
 }
 

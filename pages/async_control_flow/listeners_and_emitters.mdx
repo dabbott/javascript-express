@@ -1,0 +1,38 @@
+import eventListeners from '../../examples/files/async_control_flow/eventListeners.ts'
+import eventEmitter from '../../examples/files/async_control_flow/eventEmitter.ts'
+
+# Listeners and Emitters
+
+Sometimes the same object will **emit** multiple types of events with different names. For example, a button might emit both a `"press"` and `"longpress"` event.
+
+Objects that emit multiple events are often implemented using an **event emitter** class (either built-in or from a library).
+
+We typically call event handler functions **event listeners** when they handle (or listen for) named events.
+
+---
+
+## Listeners
+
+Listeners are common when handling user input. 
+
+In the browser, for example, buttons emit a `"click"` event, and we can use `addEventListener` to handle it.
+
+<Example
+  title={"Event listeners"}
+  code={eventListeners}
+/>
+
+---
+
+## Emitters
+
+Some environments like `node.js` and React Native come with a built-in event emitter class.
+
+Here's how a custom one might be implemented.
+
+> Event emitters don't fundamentally have to interact with the event loop — handlers can be called synchronously too. However, using the event emitter pattern doesn't make as much sense in this case.
+
+<Example
+  title={"Event emitters"}
+  code={eventEmitter}
+/>
