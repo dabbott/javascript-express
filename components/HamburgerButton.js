@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div({
-  padding: '15px 12px',
+  padding: '15px 12px', // Enlarge tap target
   width: '40px',
   height: '40px',
   display: 'flex',
@@ -10,45 +10,31 @@ const Container = styled.div({
   justifyContent: 'space-between',
   alignItems: 'stretch',
   cursor: 'pointer',
+  opacity: '0.8',
+  transition: 'opacity 0.1s',
+
+  ['&:active']: {
+    opacity: '0.3',
+  },
 })
 
-const Bar = styled.div(({ pressed }) => ({
+const Bar = styled.div({
   height: '2px',
+  borderRadius: '1px',
   backgroundColor: 'rgb(38, 48, 83)',
-  opacity: pressed ? '0.3' : '0.8',
-  transition: 'opacity 0.1s',
-}))
+})
 
-export default class HamburgerButton extends Component {
-  static defaultProps = {
-    barCount: 3,
-    onPress: () => {},
-  }
+export default function HamburgerButton({ barCount, onPress }) {
+  return (
+    <Container onClick={onPress}>
+      {[...Array(barCount)].map((_, index) => (
+        <Bar key={index} />
+      ))}
+    </Container>
+  )
+}
 
-  state = { pressed: false }
-
-  onMouseDown = () => this.setState({ pressed: true })
-
-  onMouseUp = () => this.setState({ pressed: false })
-
-  render() {
-    const { barCount, onPress } = this.props
-    const { pressed } = this.state
-
-    const elements = []
-
-    for (let i = 0; i < barCount; i++) {
-      elements.push(<Bar key={i} pressed={pressed} />)
-    }
-
-    return (
-      <Container
-        onClick={onPress}
-        onMouseDown={this.onMouseDown}
-        onMouseUp={this.onMouseUp}
-      >
-        {elements}
-      </Container>
-    )
-  }
+HamburgerButton.defaultProps = {
+  barCount: 3,
+  onPress: () => {},
 }

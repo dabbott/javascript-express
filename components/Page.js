@@ -1,6 +1,5 @@
 import { MDXProvider } from '@mdx-js/react'
-import { withRouter } from 'next/router'
-import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
@@ -12,7 +11,7 @@ import HamburgerButton from './HamburgerButton'
 import NavigationFooter from './NavigationFooter'
 import PageComponents from './PageComponents'
 import Sidebar from './Sidebar'
-import sitemap from '../guide'
+import guidebook from '../guide'
 
 const Container = styled.div({
   flex: '1 1 auto',
@@ -143,10 +142,10 @@ const GithubRibbon = ({ title }) => (
 
 /**
  * @param {string} pathname
- * @param {sitemap.TreeNode} node
- * @returns {sitemap.TreeNode | undefined}
+ * @param {guidebook.TreeNode} node
+ * @returns {guidebook.TreeNode | undefined}
  */
-export function getSection(pathname, node = sitemap) {
+function getSection(pathname, node = guidebook) {
   if (node.slug === pathname) return node
 
   return node.children.reduce((result, child) => {
@@ -156,7 +155,8 @@ export function getSection(pathname, node = sitemap) {
   }, undefined)
 }
 
-const Page = ({ router, children }) => {
+export default ({ children }) => {
+  const router = useRouter()
   const [showSidebar, setShowSidebar] = useState(true)
   const [showMenu, setShowMenu] = useState(false)
 
@@ -186,7 +186,7 @@ const Page = ({ router, children }) => {
       <Container>
         {showSidebar && (
           <SidebarContainer>
-            <Sidebar currentSection={section} />
+            <Sidebar rootSection={guidebook} currentSection={section} />
           </SidebarContainer>
         )}
         <Content key={slug}>
@@ -232,16 +232,14 @@ const Page = ({ router, children }) => {
       {showMenu && (
         <MobileOnly>
           <MenuContainer tabIndex="-1">
-            <Sidebar currentSection={section} centered />
+            <Sidebar
+              rootSection={guidebook}
+              currentSection={section}
+              centered={true}
+            />
           </MenuContainer>
         </MobileOnly>
       )}
     </MDXProvider>
   )
 }
-
-Page.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export default withRouter(Page)

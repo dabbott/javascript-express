@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { withRouter } from 'next/router'
-import React, { Component } from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import sitemap from '../guide'
 import colors from '../styles/colors'
 
 const SidebarTitle = styled.div(({ centered }) => ({
@@ -32,7 +31,7 @@ const SidebarRowsContainer = styled.div(({ centered }) => ({
   outline: 'none',
 }))
 
-const SidebarRow = styled.div(({ small, centered }) => ({
+const SidebarRowItem = styled.div(({ small, centered }) => ({
   flex: '0 0 40px',
   display: 'flex',
   flexDirection: 'row',
@@ -40,11 +39,11 @@ const SidebarRow = styled.div(({ small, centered }) => ({
   paddingLeft: centered ? '0' : '35px',
   fontSize: small ? '13px' : '16px',
   fontWeight: '300',
-  color: '#263053',
   margin: '0',
 }))
 
 const Numeral = styled.span(({ centered }) => ({
+  color: colors.text,
   flex: '0 0 50px',
   display: centered ? 'none' : 'initial',
 }))
@@ -64,22 +63,22 @@ const Dot = styled.div({
   backgroundColor: '#DEDFE8',
 })
 
-const SidebarLinkText = styled.a(({ isActive }) =>
-  Object.assign(
-    { color: '#263053', cursor: 'pointer', userSelect: 'none' },
-    isActive && {
-      textDecoration: 'underline',
-      fontWeight: '500',
-    }
-  )
-)
+const SidebarLinkText = styled.a(({ isActive }) => ({
+  color: colors.text,
+  cursor: 'pointer',
+  userSelect: 'none',
+  ...(isActive && {
+    textDecoration: 'underline',
+    fontWeight: '500',
+  }),
+}))
 
 const ExpandButton = styled.div(({ active }) => ({
   fontSize: '14px',
   fontWeight: 'bold',
   color: 'rgba(38,48,83,0.35)',
   padding: '1px 4px',
-  backgroundColor: '#DEDFE8',
+  backgroundColor: colors.neutralBackground,
   textDecoration: 'none',
   borderRadius: '10px',
   alignSelf: 'center',
@@ -88,10 +87,11 @@ const ExpandButton = styled.div(({ active }) => ({
   marginLeft: '10px',
   cursor: 'pointer',
   opacity: active ? '0.5' : '1',
+  userSelect: 'none',
 }))
 
 /**
- * @param {sitemap.TreeNode} nodes
+ * @param {guidebook.TreeNode} nodes
  * @param {number[]} indexPath
  */
 const createRows = (node, indexPath) => {
@@ -103,110 +103,106 @@ const createRows = (node, indexPath) => {
   ]
 }
 
-class Sidebar extends Component {
-  constructor(props) {
-    super()
-
-    this.state = this.buildState(props)
+const SidebarRow = ({
+  centered,
+  title,
+  linkPath,
+  hasChildren,
+  indexPath,
+  isActive,
+  isExpanded,
+  isParentExpanded,
+  onToggleSection,
+}) => {
+  // Hide if collapsed parent
+  if (indexPath.length > 2 && !isParentExpanded) {
+    return null
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.currentSection !== this.props.currentSection) {
-      this.setState(this.buildState(nextProps))
-    }
-  }
+  let numeral = indexPath.join('.')
 
-  buildState(props) {
-    const { currentSection } = props
-    const expanded = {}
+  return (
+    <SidebarRowItem small={indexPath.length > 2} centered={centered}>
+      <Numeral centered={centered}>
+        {indexPath.length <= 2 ? numeral : ''}
+      </Numeral>
 
-    if (currentSection) {
-      const { slug, parent } = currentSection
+      <Link href={linkPath}>
+        <SidebarLinkText isActive={isActive}>{title}</SidebarLinkText>
+      </Link>
 
-      expanded[slug] = true
-      expanded[parent] = true
-    }
-
-    return { expanded }
-  }
-
-  onToggleSection = slug =>
-    this.setState({
-      expanded: {
-        ...this.state.expanded,
-        [slug]: !this.state.expanded[slug],
-      },
-    })
-
-  renderRow = ({ title, slug, parent, children, indexPath }) => {
-    const { router, centered } = this.props
-    const { expanded } = this.state
-
-    // Hide if collapsed parent
-    if (indexPath.length > 2 && !expanded[parent]) {
-      return null
-    }
-
-    let numeral = indexPath.join('.')
-
-    const linkPath = `/${slug}`
-
-    return (
-      <SidebarRow
-        small={indexPath.length > 2}
-        centered={centered}
-        key={numeral}
-      >
-        <Numeral centered={centered}>
-          {indexPath.length <= 2 ? numeral : ''}
-        </Numeral>
-
-        <Link href={linkPath}>
-          <SidebarLinkText isActive={router.asPath === linkPath}>
-            {title}
-          </SidebarLinkText>
-        </Link>
-
-        {indexPath.length > 1 &&
-          children.length > 0 && (
-            <ExpandButton
-              active={expanded[slug]}
-              onClick={this.onToggleSection.bind(this, slug)}
-            >
-              ...
-            </ExpandButton>
-          )}
-      </SidebarRow>
-    )
-  }
-
-  render() {
-    const { centered } = this.props
-
-    const { title, children } = sitemap
-
-    return (
-      <>
-        <SidebarTitle centered={centered}>
-          <Link href={'/'}>
-            <SidebarTitleText centered={centered}>{title}</SidebarTitleText>
-          </Link>
-        </SidebarTitle>
-        <SidebarRowsContainer centered={centered} tabIndex="-1">
-          {children.map((node, index) => {
-            return (
-              <React.Fragment key={index.toString()}>
-                {createRows(node, [index + 1]).map(this.renderRow)}
-                <DotContainer key={`dot`}>
-                  <Dot />
-                </DotContainer>
-              </React.Fragment>
-            )
-          })}
-        </SidebarRowsContainer>
-      </>
-    )
-  }
+      {indexPath.length > 1 &&
+        hasChildren && (
+          <ExpandButton active={isExpanded} onClick={onToggleSection}>
+            ...
+          </ExpandButton>
+        )}
+    </SidebarRowItem>
+  )
 }
 
-export default withRouter(Sidebar)
+const Sidebar = ({ rootSection, currentSection, centered }) => {
+  const { slug: currentSlug, parent: currentParent } = currentSection
+
+  const { title, children } = rootSection
+
+  const router = useRouter()
+
+  const [expandedState, setExpandedState] = useState({
+    [currentSlug]: true,
+    [currentParent]: true,
+  })
+
+  // Reset expanded state when the route changes
+  useEffect(
+    () => {
+      setExpandedState({
+        [currentSlug]: true,
+        [currentParent]: true,
+      })
+    },
+    [currentSlug, currentParent]
+  )
+
+  return (
+    <>
+      <SidebarTitle centered={centered}>
+        <Link href={'/'}>
+          <SidebarTitleText centered={centered}>{title}</SidebarTitleText>
+        </Link>
+      </SidebarTitle>
+      <SidebarRowsContainer centered={centered} tabIndex="-1">
+        {children.map((node, index) => (
+          <React.Fragment key={index.toString()}>
+            {createRows(node, [index + 1]).map(
+              ({ title, slug, parent, children, indexPath }) => (
+                <SidebarRow
+                  key={slug}
+                  centered={centered}
+                  title={title}
+                  indexPath={indexPath}
+                  hasChildren={children.length > 0}
+                  linkPath={`/${slug}`}
+                  isActive={`/${slug}` === router.asPath}
+                  isExpanded={expandedState[slug]}
+                  isParentExpanded={expandedState[parent]}
+                  onToggleSection={() =>
+                    setExpandedState({
+                      ...expandedState,
+                      [slug]: !expandedState[slug],
+                    })
+                  }
+                />
+              )
+            )}
+            <DotContainer key={`dot`}>
+              <Dot />
+            </DotContainer>
+          </React.Fragment>
+        ))}
+      </SidebarRowsContainer>
+    </>
+  )
+}
+
+export default Sidebar

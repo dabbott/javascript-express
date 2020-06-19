@@ -43,7 +43,7 @@ export default class EditorConsole extends Component {
         playground={{ enabled: true }}
         width={0}
         typescript={{ enabled: true }}
-        workspaceCSS={variant === 'slides' ? workspaceCSS : undefined}
+        workspaceCSS={variant === 'slides' ? slidesCSS : undefined}
         {...rest}
         title={undefined}
       />
@@ -51,7 +51,7 @@ export default class EditorConsole extends Component {
   }
 }
 
-const workspaceCSS = `
+const slidesCSS = `
 .CodeMirror {
   background-color: rgb(250,250,250);
 }
@@ -67,9 +67,6 @@ const workspaceCSS = `
 }
 
 .cm-s-react .CodeMirror-linenumber {
-  // padding: 0;
-  // font-size: 0px;
-  // line-height: 0px;
   display: none;
 }
 
@@ -81,23 +78,3 @@ const workspaceCSS = `
   border-right: 0px;
 }
 `
-
-// .cm-s-react {
-//   font-family: 'source-code-pro', Menlo, 'Courier New', Consolas, monospace;
-//   font-size: 13px;
-//   line-height: 20px;
-//   color: #484848;
-// }
-
-// .cm-s-react .CodeMirror-linenumber {
-//   color: #d8d8d8;
-//   padding: 0 3px 0 3px;
-//   font-size: 10px;
-//   line-height: 22px;
-// }
-
-// .cm-s-react .CodeMirror-gutters {
-//   background: white;
-//   border-left: 4px solid rgba(238, 238, 238, 1);
-//   border-right: 0px;
-// }
