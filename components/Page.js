@@ -12,7 +12,7 @@ import HamburgerButton from './HamburgerButton'
 import NavigationFooter from './NavigationFooter'
 import PageComponents from './PageComponents'
 import Sidebar from './Sidebar'
-import sitemap from '../sitemap'
+import sitemap from '../guide'
 
 const Container = styled.div({
   flex: '1 1 auto',

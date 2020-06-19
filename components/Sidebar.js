@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import sitemap from '../sitemap'
+import sitemap from '../guide'
 import colors from '../styles/colors'
 
 const SidebarTitle = styled.div(({ centered }) => ({

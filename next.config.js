@@ -1,5 +1,10 @@
 const withImages = require('next-images')
 
+const withGuidebook = require('generate-guidebook/next')({
+  guidebookDirectory: 'pages',
+  guidebookModulePath: './guide.js',
+})
+
 const withMDX = require('next-mdx-frontmatter')({
   extension: /\.mdx?$/,
 })
@@ -22,9 +27,11 @@ const withRawExampleLoader = (nextConfig = {}) => {
 }
 
 module.exports = withRawExampleLoader(
-  withImages(
-    withMDX({
-      pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-    })
+  withGuidebook(
+    withImages(
+      withMDX({
+        pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+      })
+    )
   )
 )
