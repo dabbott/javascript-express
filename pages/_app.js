@@ -3,24 +3,34 @@ import 'github-fork-ribbon-css/gh-fork-ribbon.css'
 import '../styles/main.css'
 
 import React from 'react'
+import { ThemeProvider } from 'styled-components'
 import App from 'next/app'
 import Router from 'next/router'
 import Page from '../components/Page'
 import { pageView } from '../utils/Analytics'
+import colors from '../styles/colors'
+import textStyles from '../styles/textStyles'
+
+const theme = {
+  colors: colors,
+  textStyles: textStyles,
+}
 
 export default class MyApp extends App {
   render() {
     const { Component, pageProps, router } = this.props
 
-    if (router.pathname.endsWith('slides')) {
-      return <Component {...pageProps} />
-    } else {
-      return (
-        <Page>
+    return (
+      <ThemeProvider theme={theme}>
+        {router.pathname.endsWith('slides') ? (
           <Component {...pageProps} />
-        </Page>
-      )
-    }
+        ) : (
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+        )}
+      </ThemeProvider>
+    )
   }
 }
 

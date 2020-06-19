@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import logo from '../images/logo.svg'
-import colors from '../styles/colors'
-import textStyles from '../styles/textStyles'
 import mediaQuery from '../utils/mediaQuery'
 import HamburgerButton from './HamburgerButton'
 import NavigationFooter from './NavigationFooter'
@@ -32,9 +30,9 @@ const Content = styled.div({
   // overflowY: 'scroll',
 })
 
-const SidebarContainer = styled.div({
+const SidebarContainer = styled.div(({ theme }) => ({
   flex: '0 0 280px',
-  borderRight: `1px solid ${colors.divider}`,
+  borderRight: `1px solid ${theme.colors.divider}`,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'stretch',
@@ -45,7 +43,7 @@ const SidebarContainer = styled.div({
   [mediaQuery.small]: {
     display: 'none',
   },
-})
+}))
 
 const MobileOnly = styled.div({
   display: 'none',
@@ -68,7 +66,6 @@ const MenuContainer = styled.div({
   left: '0',
   right: '0',
   zIndex: '10000',
-  backgroundColor: 'white',
   overflowY: 'auto',
 })
 
@@ -88,14 +85,13 @@ const PageContainer = styled.div({
   outline: 'none',
 })
 
-const PageContentContainer = styled.div({
-  borderTop: `1px solid ${colors.divider}`,
-  backgroundColor: 'white',
+const PageContentContainer = styled.div(({ theme }) => ({
+  borderTop: `1px solid ${theme.colors.divider}`,
   padding: '60px 60px',
   [mediaQuery.small]: {
     padding: '20px 20px',
   },
-})
+}))
 
 const Logo = styled.img({
   paddingTop: '40px',
@@ -108,19 +104,19 @@ const Logo = styled.img({
   },
 })
 
-const Title = styled.span(textStyles.title)
+const Title = styled.span(({ theme }) => theme.textStyles.title)
 
-const Subtitle = styled.span(textStyles.subtitle)
+const Subtitle = styled.span(({ theme }) => theme.textStyles.subtitle)
 
-const Banner = styled.div(({ variant }) => ({
+const Banner = styled.div(({ theme, variant }) => ({
   flex: '0 0 auto',
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'column',
-  background: `linear-gradient(to bottom, ${colors.banner.top}, ${
-    colors.banner.bottom
+  background: `linear-gradient(to bottom, ${theme.colors.banner.top}, ${
+    theme.colors.banner.bottom
   })`,
 
   height: `${variant === 'large' ? 560 : 200}px`,

@@ -1,15 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import textStyles from '../styles/textStyles'
 import EditorConsole from './EditorConsole'
 
-export const Paragraph = styled.p({
-  ...textStyles.body,
+export const Paragraph = styled.p(({ theme }) => ({
+  ...theme.textStyles.body,
   marginBottom: '15px',
-})
+}))
 
-export const Blockquote = styled.blockquote({
-  ...textStyles.body,
+export const Blockquote = styled.blockquote(({ theme }) => ({
+  ...theme.textStyles.body,
   borderLeft: '4px solid #DEDFE8',
   padding: '5px 5px 5px 10px',
   marginBottom: '15px',
@@ -21,25 +20,25 @@ export const Blockquote = styled.blockquote({
   [`& > ${Paragraph}`]: {
     marginBottom: '0px',
   },
-})
+}))
 
-export const Header = styled.h1({
-  ...textStyles.header,
+export const Header = styled.h1(({ theme }) => ({
+  ...theme.textStyles.header,
 
   [`& + ${Paragraph}`]: {
     marginTop: '20px',
   },
-})
+}))
 
-export const Subheader = styled.h2({
-  ...textStyles.subheader,
+export const Subheader = styled.h2(({ theme }) => ({
+  ...theme.textStyles.subheader,
 
   [`& + ${Paragraph}`]: {
     marginTop: '15px',
   },
 
   marginTop: '35px',
-})
+}))
 
 export const Image = styled.img({
   maxWidth: '100%',

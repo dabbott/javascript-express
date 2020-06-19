@@ -27,7 +27,6 @@ const SidebarRowsContainer = styled.div(({ centered }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: centered ? 'center' : 'stretch',
-  backgroundColor: 'white',
   outline: 'none',
 }))
 

@@ -18,11 +18,11 @@ const Container = styled.div({
   },
 })
 
-const Bar = styled.div({
+const Bar = styled.div(({ theme }) => ({
   height: '2px',
   borderRadius: '1px',
-  backgroundColor: 'rgb(38, 48, 83)',
-})
+  backgroundColor: theme.colors.text,
+}))
 
 export default function HamburgerButton({ barCount, onPress }) {
   return (
