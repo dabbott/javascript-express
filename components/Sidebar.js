@@ -59,7 +59,7 @@ const Dot = styled.div({
   width: '10px',
   height: '10px',
   borderRadius: '50%',
-  backgroundColor: '#DEDFE8',
+  backgroundColor: colors.neutralBackground,
 })
 
 const SidebarLinkText = styled.a(({ isActive }) => ({
