@@ -8,4 +8,8 @@ const myObject = {
 
 console.log(myObject.contents())
 
+const alias = myObject.contents
+
+console.log(alias())
+
 export {}
