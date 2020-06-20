@@ -52,6 +52,6 @@ export default class MyApp extends App {
 }
 
 if (typeof document !== 'undefined') {
-  document.onload = pageView
+  pageView()
   Router.onRouteChangeComplete = pageView
 }
