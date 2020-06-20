@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import WebPlayer from './WebPlayer'
+import { WebPlayer } from 'react-guidebook'
 
 function countPlaygroundWidgets(code) {
   return (code.match(/console\.log/g) || []).length
@@ -33,17 +33,36 @@ export default class EditorConsole extends Component {
   }
 
   render() {
-    const { variant, ...rest } = this.props
+    let { variant, panes = ['editor', 'player'], height, ...rest } = this.props
+
+    const style = {
+      ...(variant === 'slides'
+        ? { flex: '1' }
+        : {
+            height: height
+              ? `${height}px`
+              : rest.code
+                ? codeHeight(rest.code)
+                : 400,
+          }),
+      flex: '1 1 0%',
+      minWidth: '0',
+      minHeight: '0',
+    }
+
+    if (rest.workspaces && rest.workspaces.length > 0) {
+      panes = ['workspaces', ...panes]
+    }
 
     return (
       <WebPlayer
         fullscreen={true}
-        flex={variant === 'slides' ? '1' : undefined}
-        height={rest.code ? codeHeight(this.props.code) : 400}
-        playground={{ enabled: true }}
+        style={style}
         width={0}
+        playground={{ enabled: true }}
         typescript={{ enabled: true }}
         workspaceCSS={variant === 'slides' ? slidesCSS : undefined}
+        panes={panes}
         {...rest}
         title={undefined}
       />

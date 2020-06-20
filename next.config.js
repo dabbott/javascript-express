@@ -1,8 +1,8 @@
 const withImages = require('next-images')
 
 const withGuidebook = require('generate-guidebook/next')({
-  guidebookDirectory: 'pages',
-  guidebookModulePath: './guide.js',
+  guidebookDirectory: './pages',
+  guidebookModulePath: './guidebook.js',
 })
 
 const withMDX = require('next-mdx-frontmatter')({

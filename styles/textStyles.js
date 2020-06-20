@@ -1,5 +1,6 @@
+import { mediaQuery } from 'react-guidebook'
+
 import colors from './colors'
-import mediaQuery from '../utils/mediaQuery'
 
 const fonts = {
   normal: "'Helvetica Neue', Helvetica, sans-serif",
