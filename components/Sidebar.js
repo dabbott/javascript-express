@@ -2,12 +2,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import colors from '../styles/colors'
 
-const SidebarTitle = styled.div(({ centered }) => ({
+const SidebarTitle = styled.div(({ theme, centered }) => ({
   textAlign: centered ? 'center' : 'left',
   margin: '0',
-  borderBottom: `1px solid ${colors.divider}`,
+  borderBottom: `1px solid ${theme.colors.divider}`,
 }))
 
 const SidebarTitleText = styled.a(({ centered }) => ({
@@ -41,8 +40,8 @@ const SidebarRowItem = styled.div(({ small, centered }) => ({
   margin: '0',
 }))
 
-const Numeral = styled.span(({ centered }) => ({
-  color: colors.text,
+const Numeral = styled.span(({ theme, centered }) => ({
+  color: theme.colors.text,
   flex: '0 0 50px',
   display: centered ? 'none' : 'initial',
 }))
@@ -54,16 +53,16 @@ const DotContainer = styled.div({
   display: 'flex',
 })
 
-const Dot = styled.div({
+const Dot = styled.div(({ theme }) => ({
   flex: '0 0 auto',
   width: '10px',
   height: '10px',
   borderRadius: '50%',
-  backgroundColor: colors.neutralBackground,
-})
+  backgroundColor: theme.colors.neutralBackground,
+}))
 
-const SidebarLinkText = styled.a(({ isActive }) => ({
-  color: colors.text,
+const SidebarLinkText = styled.a(({ theme, isActive }) => ({
+  color: theme.colors.text,
   cursor: 'pointer',
   userSelect: 'none',
   ...(isActive && {
@@ -72,12 +71,12 @@ const SidebarLinkText = styled.a(({ isActive }) => ({
   }),
 }))
 
-const ExpandButton = styled.div(({ active }) => ({
+const ExpandButton = styled.div(({ theme, active }) => ({
   fontSize: '14px',
   fontWeight: 'bold',
   color: 'rgba(38,48,83,0.35)',
   padding: '1px 4px',
-  backgroundColor: colors.neutralBackground,
+  backgroundColor: theme.colors.neutralBackground,
   textDecoration: 'none',
   borderRadius: '10px',
   alignSelf: 'center',
