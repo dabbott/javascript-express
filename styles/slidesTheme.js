@@ -1,5 +1,3 @@
-import { mediaQuery } from 'react-guidebook'
-
 import colors from './colors'
 
 const fonts = {
@@ -7,57 +5,33 @@ const fonts = {
   monospace: "Menlo, Monaco, Consolas, 'Courier New', monospace",
 }
 
-export default {
-  fonts,
-  title: {
-    fontFamily: fonts.normal,
-    textAlign: 'center',
-    fontSize: '60px',
-    fontWeight: '100',
-    color: colors.text,
-    lineHeight: '1.4',
-    [mediaQuery.small]: {
-      fontSize: '36px',
-      fontWeight: '300',
-    },
-  },
-  subtitle: {
-    fontFamily: fonts.normal,
-    textAlign: 'center',
-    fontSize: '22px',
-    fontWeight: '300',
-    color: colors.text,
-    lineHeight: '1.4',
-    [mediaQuery.small]: {
-      fontSize: '18px',
-    },
-  },
+const textStyles = {
   heading1: {
     fontFamily: fonts.normal,
-    fontSize: '24px',
+    fontSize: '72px',
     fontWeight: '300',
     color: colors.text,
     lineHeight: '1.5',
   },
   heading2: {
     fontFamily: fonts.normal,
-    fontSize: '16px',
+    fontSize: '48px',
     fontWeight: '500',
     color: colors.text,
     lineHeight: '1.5',
   },
   heading3: {
     fontFamily: fonts.normal,
-    fontSize: '14px',
+    fontSize: '36px',
     fontWeight: 'bold',
     color: colors.text,
     lineHeight: '1.5',
   },
   body: {
     fontFamily: fonts.normal,
-    fontSize: '14px',
+    fontSize: '24px',
     fontWeight: '400',
-    lineHeight: '1.5',
+    lineHeight: '2',
     color: colors.text,
   },
   code: {
@@ -67,3 +41,5 @@ export default {
     color: colors.textMuted,
   },
 }
+
+export default { colors, textStyles }

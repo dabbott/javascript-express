@@ -1,5 +1,6 @@
 const colors = {
   text: 'rgb(38, 48, 83)',
+  textMuted: 'rgb(85, 85, 85)',
   divider: 'rgba(220, 220, 220, 0.5)',
   primary: 'rgb(255, 223, 67)',
   neutralBackground: '#DEDFE8',

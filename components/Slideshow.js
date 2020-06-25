@@ -2,6 +2,7 @@ import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import dynamic from 'next/dynamic'
 import EditorConsole from './EditorConsole'
+import { PageComponents } from 'react-guidebook'
 
 const splitSources = imports =>
   imports.reduce(
@@ -40,7 +41,7 @@ const theme = {
     text: '24px',
     monospace: '20px',
   },
-  space: [8, 16, 32],
+  space: [16, 32, 64],
 }
 
 const styles = {
@@ -74,14 +75,11 @@ export default dynamic(
 
       const components = {
         ...mdxComponentMap,
+        ...PageComponents,
         Example: props => <EditorConsole variant="slides" {...props} />,
-        table: props => <table {...props} style={{ margin: '16px' }} />,
-        th: props => <th {...props} style={{ padding: '4px' }} />,
-        h2: props => <mdxComponentMap.h2 {...props} style={styles.heading} />,
-        h1: props => <mdxComponentMap.h1 {...props} style={styles.heading} />,
+        h2: props => <PageComponents.h2 {...props} style={styles.heading} />,
+        h1: props => <PageComponents.h1 {...props} style={styles.heading} />,
         blockquote: props => null,
-        strong: props => <strong {...props} style={styles.strong} />,
-        em: props => <em {...props} style={styles.em} />,
       }
 
       console.log(components)

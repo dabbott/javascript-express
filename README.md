@@ -2,9 +2,9 @@
 
 A guide and reference for learning JavaScript & TypeScript.
 
-The production deployment of this app is running here: http://www.javascript.express.
+The production deployment of this app is running here: https://www.javascript.express.
 
-Written by Devin Abbott ([@dvnabbott](http://twitter.com/dvnabbott)).
+Written by Devin Abbott ([@dvnabbott](https://twitter.com/dvnabbott)).
 
 ## Development
 

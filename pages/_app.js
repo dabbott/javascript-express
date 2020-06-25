@@ -12,6 +12,7 @@ import { Page, PageComponents } from 'react-guidebook'
 import { pageView } from '../utils/Analytics'
 import colors from '../styles/colors'
 import textStyles from '../styles/textStyles'
+import slidesTheme from '../styles/slidesTheme'
 import EditorConsole from '../components/EditorConsole'
 import logo from '../images/logo.svg'
 import guidebook from '../guidebook'
@@ -30,22 +31,20 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps, router } = this.props
 
-    return (
+    return router.pathname.endsWith('slides') ? (
+      <ThemeProvider theme={slidesTheme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    ) : (
       <ThemeProvider theme={theme}>
-        {router.pathname.endsWith('slides') ? (
-          <Component {...pageProps} />
-        ) : (
-          <>
-            <Helmet title={guidebook.title}>
-              <html lang="en" />
-            </Helmet>
-            <MDXProvider components={Components}>
-              <Page rootNode={guidebook} logo={logo}>
-                <Component {...pageProps} />
-              </Page>
-            </MDXProvider>
-          </>
-        )}
+        <Helmet title={guidebook.title}>
+          <html lang="en" />
+        </Helmet>
+        <MDXProvider components={Components}>
+          <Page rootNode={guidebook} logo={logo}>
+            <Component {...pageProps} />
+          </Page>
+        </MDXProvider>
       </ThemeProvider>
     )
   }

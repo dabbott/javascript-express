@@ -27,15 +27,15 @@ export default class MyDocument extends Document {
           <link rel="icon" type="image/png" href="/static/favicon.png" />
           <meta
             name="description"
-            content="Learn React Native with interactive examples."
+            content="Learn JavaScript through interactive examples."
           />
           <meta property="og:type" content="article" />
           <meta property="og:url" content="http://www.javascript.express/" />
-          <meta property="og:site_name" content="React Native Express" />
-          <meta property="og:title" content="React Native Express" />
+          <meta property="og:site_name" content="JavaScript Express" />
+          <meta property="og:title" content="JavaScript Express" />
           <meta
             property="og:description"
-            content="Learn React Native with interactive examples."
+            content="Learn JavaScript through interactive examples."
           />
           <meta
             property="og:image"

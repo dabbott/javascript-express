@@ -17,7 +17,7 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.6",
     "react-ga": "^2.6.0",
-    "react-guidebook": "^0.0.3",
+    "react-guidebook": "^0.0.9",
     "react-helmet": "^5.2.1",
     "react-native-web-player": "^2.0.0-alpha.18",
     "reset-css": "^5.0.1",
@@ -46,5 +46,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
