@@ -37,14 +37,17 @@ export default class MyApp extends App {
       </ThemeProvider>
     ) : (
       <ThemeProvider theme={theme}>
-        <Helmet title={guidebook.title}>
-          <html lang="en" />
-        </Helmet>
-        <MDXProvider components={Components}>
-          <Page rootNode={guidebook} logo={logo}>
-            <Component {...pageProps} />
-          </Page>
-        </MDXProvider>
+        {/* Fragment needed for React.Children.only */}
+        <>
+          <Helmet title={guidebook.title}>
+            <html lang="en" />
+          </Helmet>
+          <MDXProvider components={Components}>
+            <Page rootNode={guidebook} logo={logo}>
+              <Component {...pageProps} />
+            </Page>
+          </MDXProvider>
+        </>
       </ThemeProvider>
     )
   }
