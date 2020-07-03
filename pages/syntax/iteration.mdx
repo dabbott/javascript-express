@@ -18,7 +18,9 @@ There are several approaches to iteration:
 
 ## Loops
 
-JavaScript supports `for`, `while`, and `do while` loops. We can use `break` to exit the loop immediately or `continue` to advance to the next iteration. Nested loops can be labeled.
+JavaScript supports `for`, `while`, and `do while` loops. 
+
+We can use `break` to exit the loop immediately or `continue` to advance to the next iteration. Nested loops can be labeled.
 
 > These have essentially the same syntax and work the same way as in other C-like languages.
 
@@ -74,9 +76,9 @@ If we do want to use a `for ... in` loop, we can use the `hasOwnProperty` method
 
 ## forEach
 
-We use `forEach` to call a function for each element of an array. The function is also passed the element, the element's index, and the array itself.
+We use `forEach` to call a function for each element of an array. <Details>The function is also passed the element, the element's index, and the array itself.</Details>
 
-We'll generally use this instead of `for ... of`, unless we need to exit the loop early (i.e. `break` doesn't exist in `forEach` loops).
+We'll generally use this instead of `for ... of`, unless we need to exit the loop early<Details> (i.e. `break` doesn't exist in `forEach` loops)</Details>.
 
 <Example   
   title={"forEach"}

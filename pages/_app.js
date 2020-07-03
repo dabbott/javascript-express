@@ -25,6 +25,7 @@ const theme = {
 const Components = {
   ...PageComponents,
   Example: EditorConsole,
+  Details: ({ children }) => children,
 }
 
 export default class MyApp extends App {

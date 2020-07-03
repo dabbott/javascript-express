@@ -71,6 +71,7 @@ export default dynamic(
         ...mdxComponentMap,
         ...PageComponents,
         Example: props => <EditorConsole variant="slides" {...props} />,
+        Details: () => null,
         h2: props => <PageComponents.h2 {...props} style={styles.heading} />,
         h1: props => <PageComponents.h2 {...props} style={styles.heading} />,
         blockquote: props => null,
