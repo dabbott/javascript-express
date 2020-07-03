@@ -1,15 +1,3 @@
-import React from 'react'
+import SectionSlideshow from '../../components/SectionSlideshow'
 
-import Slideshow from '../../components/Slideshow'
-
-export default () => (
-  <Slideshow
-    sources={[
-      require('!!babel-loader!spectacle-mdx-loader!../types.mdx'),
-      require('!!babel-loader!spectacle-mdx-loader!./primitive_types.mdx'),
-      require('!!babel-loader!spectacle-mdx-loader!./object_types.mdx'),
-      require('!!babel-loader!spectacle-mdx-loader!./nullability.mdx'),
-      require('!!babel-loader!spectacle-mdx-loader!./checking_types.mdx'),
-    ]}
-  />
-)
+export default () => <SectionSlideshow sectionName={'types'} />

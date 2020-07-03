@@ -1,18 +1,10 @@
-import React from 'react'
+import React, { createContext, useContext } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import dynamic from 'next/dynamic'
 import EditorConsole from './EditorConsole'
 import { PageComponents } from 'react-guidebook'
 
-const splitSources = imports =>
-  imports.reduce(
-    (result, element) => {
-      result.slides.push(...element.default)
-      result.notes.push(...element.notes)
-      return result
-    },
-    { slides: [], notes: [] }
-  )
+const NotesContext = createContext(false)
 
 const theme = {
   size: {
@@ -48,6 +40,7 @@ const styles = {
   heading: {
     textDecoration: 'underline',
     textDecorationColor: theme.colors.quaternary,
+    marginTop: '20px',
   },
   em: {
     fontStyle: 'italic',
@@ -59,6 +52,7 @@ const styles = {
   },
 }
 
+// Load spectacle dynamically, since it doesn't work with SSR
 export default dynamic(
   () =>
     import('spectacle').then(spectacle => {
@@ -73,16 +67,31 @@ export default dynamic(
         mdxComponentMap,
       } = spectacle
 
-      const components = {
+      const slideComponentMap = {
         ...mdxComponentMap,
         ...PageComponents,
         Example: props => <EditorConsole variant="slides" {...props} />,
         h2: props => <PageComponents.h2 {...props} style={styles.heading} />,
-        h1: props => <PageComponents.h1 {...props} style={styles.heading} />,
+        h1: props => <PageComponents.h2 {...props} style={styles.heading} />,
         blockquote: props => null,
       }
 
-      console.log(components)
+      const notesComponentMap = {
+        ...Object.fromEntries(
+          Object.entries(slideComponentMap).map(([key, Component]) => [
+            key,
+            props => {
+              const isVisible = useContext(NotesContext)
+              return isVisible && <Component {...props} />
+            },
+          ])
+        ),
+        blockquote: props => (
+          <NotesContext.Provider value={true}>
+            <PageComponents.blockquote {...props} />
+          </NotesContext.Provider>
+        ),
+      }
 
       const template = () => (
         <FlexBox
@@ -92,7 +101,7 @@ export default dynamic(
           width={1}
         >
           <Box padding={0.5} alignItems="center">
-            <Progress color={theme.colors.secondary} size={20} />
+            <Progress color={'black'} size={16} />
           </Box>
           {/* <Box padding="0 1em">
             <FullScreen />
@@ -100,22 +109,23 @@ export default dynamic(
         </FlexBox>
       )
 
-      const Presentation = ({ sources = [] }) => {
-        const { slides, notes } = splitSources(sources)
-
+      const Presentation = ({ slides }) => {
         return (
-          <MDXProvider components={components}>
+          <MDXProvider components={slideComponentMap}>
             <Deck loop theme={theme} template={template}>
-              {slides
-                .map((MDXSlide, i) => [MDXSlide, notes[i]])
-                .map(([MDXSlide, MDXNote], i) => (
-                  <Slide key={`slide-${i}`} slideNum={i}>
-                    <MDXSlide />
-                    <Notes>
-                      <MDXNote />
-                    </Notes>
-                  </Slide>
-                ))}
+              {slides.map(({ SlideComponent, sectionName }, i) => (
+                <Slide key={`slide-${i}`} slideNum={i}>
+                  <PageComponents.strong>{sectionName}</PageComponents.strong>
+                  <SlideComponent />
+                  <Notes>
+                    <MDXProvider components={notesComponentMap}>
+                      <div style={{ backgroundColor: 'white' }}>
+                        <SlideComponent />
+                      </div>
+                    </MDXProvider>
+                  </Notes>
+                </Slide>
+              ))}
             </Deck>
           </MDXProvider>
         )
