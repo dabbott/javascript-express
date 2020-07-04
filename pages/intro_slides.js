@@ -4,7 +4,7 @@ import Slideshow from '../components/Slideshow'
 const introSlides = require('!!babel-loader!spectacle-mdx-loader!../slides/intro.mdx')
 
 /**
- * @type {import('../utils/requireSlide').Slide[]}
+ * @type {import('../utils/requireSlides').Slide[]}
  */
 const slides = introSlides.default.map((slide, index, list) => {
   return {

@@ -118,7 +118,7 @@ export default dynamic(
                 <Slide key={`slide-${i}`} slideNum={i}>
                   <PageComponents.strong>
                     <a
-                      href="/slides "
+                      href="/slides"
                       style={{
                         color: '#337ab7',
                         textDecoration: 'none',
