@@ -24,10 +24,21 @@ export default function requireSlide(root, node, isRoot) {
   const slides = []
 
   for (let i = 0; i < slideComponents.length; i++) {
+    const slidePath = [root.title, ...(!isRoot ? [node.title] : [])]
+
+    const slideIndex =
+      slideComponents.length > 1
+        ? ' (' +
+          (i + 1).toString() +
+          '/' +
+          slideComponents.length.toString() +
+          ')'
+        : ''
+
     slides.push({
       SlideComponent: slideComponents[i],
       NotesComponent: notesComponents[i],
-      sectionName: isRoot ? node.title : `${root.title} / ${node.title}`,
+      sectionName: slidePath.join(' / ') + slideIndex,
     })
   }
 

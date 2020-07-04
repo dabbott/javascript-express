@@ -116,8 +116,19 @@ export default dynamic(
             <Deck loop theme={theme} template={template}>
               {slides.map(({ SlideComponent, sectionName }, i) => (
                 <Slide key={`slide-${i}`} slideNum={i}>
-                  <PageComponents.strong>{sectionName}</PageComponents.strong>
-                  <SlideComponent />
+                  <PageComponents.strong>
+                    <a
+                      href="/slides "
+                      style={{
+                        color: '#337ab7',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      Index
+                    </a>
+                    {sectionName ? ` / ${sectionName}` : sectionName}
+                  </PageComponents.strong>
+                  <SlideComponent spectacle={spectacle} />
                   <Notes>
                     <MDXProvider components={notesComponentMap}>
                       <div style={{ backgroundColor: 'white' }}>

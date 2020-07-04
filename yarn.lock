@@ -3405,10 +3405,10 @@ function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
-generate-guidebook@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/generate-guidebook/-/generate-guidebook-1.0.2.tgz#ea4cf208284f07ac67638e25c528ce3876bdd98f"
-  integrity sha512-Na7QDJ30azqr49TtAPaLqj32b+no12Ay9GFh9UMdoUQ5C18DD5Qq1ZT+RWncp7rKx2ihFuylXEPeFhbWy4wcbg==
+generate-guidebook@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/generate-guidebook/-/generate-guidebook-1.0.6.tgz#622e5cf4ba3e8b627d0d83946fb3c5fec422954d"
+  integrity sha512-gnR4f6tFThd1G1fDyRHFWbUx8HW34z/dlxOaE6odJMl3RDh+5gibCQRELsm5qTrxiDjnbg0qbLbn2cukXWin1w==
   dependencies:
     eval-webpack-plugin "^1.0.0"
     gray-matter "^4.0.2"

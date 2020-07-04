@@ -17,22 +17,18 @@ These automatically coerce types, which _is_ idiomatic to do, despite being some
 
 ## Truthiness
 
-When using logical operators, the operands will be coerced to booleans before being compared. We refer to values that are coerced to `true` as **truthy** values, and values that are coerced to `false` as **falsy** values.
+When using logical operators, the operands will be coerced to booleans before being compared. 
+
+Values coerced to `true` are called **truthy** values; all other values are **falsy** values. The falsy values:
+
+| Type | Value |
+| --- | --- |
+| Boolean | `false` |
+| Number and BigInt | `0`, `-0`, `0n`, `-0n`, `NaN` |
+| String | `""` |
+| Other | `null`, `undefined` |
 
 > A **truthy** value is a value that is considered true when encountered in a Boolean context. All values are truthy unless they are defined as falsy. (Definition: [mdn](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)).
-
-There are 8 falsy values:
-
-| Value | Description |
-| --- | --- |
-| `false` | The keyword `false` |
-| `0` | The number zero |
-| `-0` | The number negative zero |
-| `0n` | BigInt, when used as a boolean, follows the same rule as a Number. 0n is falsy. |
-| `""` | Empty string value |
-| `null` | `null` - the absence of any value |
-| `undefined` | `undefined` - the primitive value |
-| `NaN` | `NaN` - not a number |
 
 ---
 
