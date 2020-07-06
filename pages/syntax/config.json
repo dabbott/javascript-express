@@ -5,6 +5,8 @@
     "logical_operators",
     "iteration",
     "spread",
+    "destructuring",
+    "string_interpolation",
     "error_handling"
   ]
 }

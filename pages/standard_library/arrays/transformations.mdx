@@ -1,6 +1,10 @@
 import slice from '../../../examples/files/collections/slice.ts'
 import concat from '../../../examples/files/collections/concat.ts'
 import filter from '../../../examples/files/collections/filter.ts'
+import map from '../../../examples/files/collections/map.ts'
+import flat from '../../../examples/files/collections/flat.ts'
+import reduce from '../../../examples/files/collections/reduce.ts'
+import join from '../../../examples/files/collections/join.ts'
 
 # Transformations
 
@@ -57,4 +61,44 @@ We use `filter` to make a new array that contains a subset of the elements of th
 
 ## Map
 
-TODO: map, flat, reduce, join
+We use `map` to transform each element into a different element (potentially of a different type).
+
+<Example   
+  title={"Map"}
+  code={map}
+/>
+
+---
+
+## Flat
+
+We use `flat` to flatten nested arrays into a single array. There's an optional `depth` argument to flatten recursively.
+
+<Example   
+  title={"Flat"}
+  code={flat}
+/>
+
+---
+
+## Reduce
+
+We use `reduce` to combine each element in the array into a single value (of an arbitrary type).
+
+<Example   
+  title={"Reduce"}
+  code={reduce}
+/>
+
+---
+
+## Join
+
+We use `join` to combine each element in the array into a single string, seperated by a `separator` string argument.
+
+> Each element is first automatically converted to a string with `toString`
+
+<Example   
+  title={"Join"}
+  code={join}
+/>

@@ -1,4 +1,9 @@
-const myObject = {
+type MyObjectType = {
+  name: string
+  age: number
+}
+
+const myObject: MyObjectType = {
   name: 'Devin',
   age: 29,
 }

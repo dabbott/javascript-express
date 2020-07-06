@@ -1,0 +1,48 @@
+import importsAndExports from '../../examples/importsAndExports'
+import namedImportsAndExports from '../../examples/namedImportsAndExports'
+import requiresAndExports from '../../examples/requiresAndExports'
+import momentExample from '../../examples/files/modules/momentExample.ts'
+import { moment } from "../../examples/modules";
+
+# Imports and Exports
+
+We can use the keyword `import` to load values from other JavaScript files via relative path.
+
+We use `export` to expose values for importing.
+
+<Example {...importsAndExports} />
+
+---
+
+## Named imports and exports
+
+A single file can have multiple exports, and any subset of these can be imported simultaneously.
+
+<Example {...namedImportsAndExports} />
+
+---
+
+## Importing from modules
+
+3rd party libraries specify a "main" file, usually named `index.js`.
+
+There's a shorter syntax for importing this file: we import the name of the module's directory (which is the name of the package in the `npm` registry).
+
+E.g. assuming we had downloaded the `moment` library:
+
+> Similarly, importing a directory will import the `index.js` file in that directory.
+
+<Example
+  code={momentExample}
+  vendorComponents={[moment]}
+/>
+
+## "Legacy" imports and exports
+
+The newer `import` and `export` syntax are usually implemented as syntax sugar on top of the older `require` and `module.exports` pattern.
+
+The new syntax is generally better since it's statically analyzable — i.e. we can't use an expression as an import path.
+
+> There are still a variety of uses for this pattern, but in the most common use case, we should use `import` and `export` on any platform that supports them.
+
+<Example {...requiresAndExports} />
