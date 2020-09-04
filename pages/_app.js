@@ -1,26 +1,27 @@
 import 'reset-css'
-import 'github-fork-ribbon-css/gh-fork-ribbon.css'
 import '../styles/main.css'
 
+import ReactGA from 'react-ga'
 import React from 'react'
 import Helmet from 'react-helmet'
 import { MDXProvider } from '@mdx-js/react'
 import { ThemeProvider } from 'styled-components'
 import App from 'next/app'
 import Router from 'next/router'
-import { Page, PageComponents } from 'react-guidebook'
-import { pageView } from '../utils/Analytics'
-import colors from '../styles/colors'
-import textStyles from '../styles/textStyles'
+import {
+  Page,
+  PageComponents,
+  NotFound,
+  findNodeBySlug,
+  initializeAnalytics,
+  trackPageView,
+} from 'react-guidebook'
+import theme from '../styles/theme'
 import slidesTheme from '../styles/slidesTheme'
 import EditorConsole from '../components/EditorConsole'
 import logo from '../images/logo.svg'
 import guidebook from '../guidebook'
-
-const theme = {
-  colors: colors,
-  textStyles: textStyles,
-}
+import { searchPages, searchTextMatch } from '../utils/search'
 
 const Components = {
   ...PageComponents,
@@ -28,15 +29,44 @@ const Components = {
   Details: ({ children }) => children,
 }
 
+const github = {
+  user: 'dabbott',
+  repo: 'javascript-express',
+}
+
 export default class MyApp extends App {
   render() {
     const { Component, pageProps, router } = this.props
 
-    return router.pathname.endsWith('slides') ? (
-      <ThemeProvider theme={slidesTheme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    ) : (
+    const slug = router.pathname.slice(1)
+
+    if (slug.endsWith('slides')) {
+      return (
+        <ThemeProvider theme={slidesTheme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      )
+    }
+
+    // if (slug.endsWith('playgrounds')) {
+    //   return (
+    //     <ThemeProvider theme={theme}>
+    //       <Component {...pageProps} />
+    //     </ThemeProvider>
+    //   )
+    // }
+
+    const node = findNodeBySlug(guidebook, slug)
+
+    if (!node) {
+      return (
+        <ThemeProvider theme={theme}>
+          <NotFound routeMap={legacyRoutes} />
+        </ThemeProvider>
+      )
+    }
+
+    return (
       <ThemeProvider theme={theme}>
         {/* Fragment needed for React.Children.only */}
         <>
@@ -44,7 +74,13 @@ export default class MyApp extends App {
             <html lang="en" />
           </Helmet>
           <MDXProvider components={Components}>
-            <Page rootNode={guidebook} logo={logo}>
+            <Page
+              rootNode={guidebook}
+              logo={logo}
+              github={github}
+              searchPages={searchPages}
+              searchTextMatch={searchTextMatch}
+            >
               <Component {...pageProps} />
             </Page>
           </MDXProvider>
@@ -55,6 +91,9 @@ export default class MyApp extends App {
 }
 
 if (typeof document !== 'undefined') {
+  const pageView = () => trackPageView(ReactGA)
+
+  initializeAnalytics(ReactGA, 'UA-77053427-4')
   pageView()
   Router.onRouteChangeComplete = pageView
 }
