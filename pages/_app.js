@@ -61,7 +61,7 @@ export default class MyApp extends App {
     if (!node) {
       return (
         <ThemeProvider theme={theme}>
-          <NotFound routeMap={legacyRoutes} />
+          <NotFound />
         </ThemeProvider>
       )
     }

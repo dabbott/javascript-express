@@ -6099,10 +6099,10 @@ react-ga@^2.6.0:
   resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.6.0.tgz#c3fe830ead2ad25117e1d33280d9698de9b28496"
   integrity sha512-GWHBWZDFjDGMkIk1LzroIn0mNTygKw3adXuqvGvheFZvlbpqMPbHsQsTdQBIxRRdXGQM/Zq+dQLRPKbwIHMTaw==
 
-react-guidebook@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/react-guidebook/-/react-guidebook-0.3.2.tgz#21a4a4855246a2616bee888618a2ff6a9a22a29d"
-  integrity sha512-xxZFu05rOU4j2FwI2VSEDHpRzgQcfWPnh7pGuVOsl18Rwb087qDI1xDvaduBpraXKhqgI9BfMiAd3vdg+ORoQQ==
+react-guidebook@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/react-guidebook/-/react-guidebook-0.3.3.tgz#54519c86d18963a01758d4ea969a1bf7dfe7bad8"
+  integrity sha512-8bvjs5mnzw1L+C51dly+eqTAjpYdh4stUN8wVABr/y+6dJ5M7AcFKqIemfS/LWJngFELFaZTjpa0YcaAmR97FQ==
   dependencies:
     downshift "^6.0.5"
     react-native-web-player "^2.0.0-alpha.26"
