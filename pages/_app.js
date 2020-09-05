@@ -27,6 +27,7 @@ const Components = {
   ...PageComponents,
   Example: EditorConsole,
   Details: ({ children, condition }) => condition !== false && children,
+  LanguageName: () => (IS_JAVASCRIPT ? 'JavaScript' : 'TypeScript'),
 }
 
 const github = {

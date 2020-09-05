@@ -60,6 +60,7 @@ const withRawExampleLoader = nextConfig => ({
       new webpack.DefinePlugin({
         IS_TYPESCRIPT: JSON.stringify(IS_TYPESCRIPT),
         IS_JAVASCRIPT: JSON.stringify(IS_JAVASCRIPT),
+        LANGUAGE: JSON.stringify(LANGUAGE),
       })
     )
 
