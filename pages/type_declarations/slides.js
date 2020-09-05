@@ -1,3 +1,4 @@
 import SectionSlideshow from '../../components/SectionSlideshow'
 
-export default () => <SectionSlideshow sectionName={'type_declarations'} />
+export default () =>
+  IS_TYPESCRIPT ? <SectionSlideshow sectionName={'type_declarations'} /> : null

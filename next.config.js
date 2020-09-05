@@ -4,15 +4,14 @@ const withImages = require('next-images')
 const LANGUAGE_TYPESCRIPT = process.env.LANGUAGE_TYPESCRIPT
 const IS_TYPESCRIPT = !!LANGUAGE_TYPESCRIPT
 const IS_JAVASCRIPT = !LANGUAGE_TYPESCRIPT
+const LANGUAGE = LANGUAGE_TYPESCRIPT ? 'TypeScript' : 'JavaScript'
 
-console.log(
-  `Building for language: ${LANGUAGE_TYPESCRIPT ? 'TypeScript' : 'JavaScript'}`
-)
+console.log(`Building for language: ${LANGUAGE}`)
 
 const withGuidebook = require('generate-guidebook/next')({
   guidebookDirectory: './pages',
   guidebookModulePath: './guidebook.js',
-  variables: { IS_TYPESCRIPT, IS_JAVASCRIPT },
+  variables: { IS_TYPESCRIPT, IS_JAVASCRIPT, LANGUAGE },
 })
 
 const withMDX = require('next-mdx-frontmatter')({

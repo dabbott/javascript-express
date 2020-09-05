@@ -36,7 +36,7 @@
     "@sucrase/webpack-loader": "^2.0.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.11.1",
-    "generate-guidebook": "^1.1.2",
+    "generate-guidebook": "^1.2.0",
     "loader-utils": "^1.2.3",
     "next-mdx-frontmatter": "^0.0.3",
     "prettier": "^1.13.7",

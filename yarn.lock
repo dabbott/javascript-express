@@ -3717,10 +3717,10 @@ function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
-generate-guidebook@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/generate-guidebook/-/generate-guidebook-1.1.2.tgz#32f2399f9672d4631245354cddeaab1e9c09d5cb"
-  integrity sha512-WkEiQj9/Pv8UZysb6SQyySOBpUJ8tYNHo5cG8lbrkbksKU2Hcw5eZ4yNM9udHI4KPIt2DZoms1rIfpGP7GRkgQ==
+generate-guidebook@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/generate-guidebook/-/generate-guidebook-1.2.0.tgz#a16215bd90fd04e70e4ed386d799f861cb868f82"
+  integrity sha512-Ep6Cqzey3GC1yMq++eoso4xE57qejSFanLGRYmm3lYsVK9cIKth4x3M0W/2djJ9IYU8txK/rcsehV8/+9zJFGA==
   dependencies:
     "@mdx-js/mdx" "^1.6.16"
     eval-webpack-plugin "^1.0.0"
