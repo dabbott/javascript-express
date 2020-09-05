@@ -40,9 +40,7 @@ We can specify the `this` value with `.call()`.
 
 Functions that are properties of objects will have their `this` set to the object when called with `.` syntax. This applies to instances of classes too.
 
-This is the main use case for `this`.
-
-> Depending on your TypeScript compiler settings, you can force the type of `this` to be defined, which helps avoid errors.
+This is the main use case for `this`.<Details condition={IS_TYPESCRIPT}> Depending on your TypeScript compiler settings, you can force the type of `this` to be defined, which helps avoid errors.</Details>
 
 <Example
   title={"Automatic this"}

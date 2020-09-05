@@ -26,7 +26,7 @@ import { searchPages, searchTextMatch } from '../utils/search'
 const Components = {
   ...PageComponents,
   Example: EditorConsole,
-  Details: ({ children }) => children,
+  Details: ({ children, condition }) => condition !== false && children,
 }
 
 const github = {

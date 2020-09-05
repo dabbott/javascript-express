@@ -23,7 +23,9 @@
   "keywords": [],
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "npm run dev:ts",
+    "dev:js": "next",
+    "dev:ts": "LANGUAGE_TYPESCRIPT=true next",
     "build": "next build && next export",
     "start": "next start -p $PORT",
     "format": "prettier --write '**/*.js'",
@@ -31,14 +33,16 @@
   },
   "devDependencies": {
     "@mdx-js/loader": "^1.0.20",
+    "@sucrase/webpack-loader": "^2.0.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.11.1",
-    "generate-guidebook": "^1.1.0",
+    "generate-guidebook": "^1.1.2",
     "loader-utils": "^1.2.3",
     "next-mdx-frontmatter": "^0.0.3",
     "prettier": "^1.13.7",
     "raw-loader": "^3.0.0",
-    "spectacle-mdx-loader": "^0.1.1"
+    "spectacle-mdx-loader": "^0.1.1",
+    "sucrase": "^3.15.0"
   },
   "repository": {
     "type": "git",

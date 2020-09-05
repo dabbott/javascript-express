@@ -1,21 +1,19 @@
-type EventHandler = (...args: any[]) => void
-
 class EventEmitter {
-  listeners: { [key: string]: EventHandler[] } = {}
+  listeners = {}
 
-  addListener(eventName: string, listener: EventHandler) {
+  addListener(eventName, listener) {
     const listeners = this.listeners[eventName] || []
     listeners.push(listener)
     this.listeners[eventName] = listeners
   }
 
-  removeListener(eventName: string, listener: EventHandler) {
+  removeListener(eventName, listener) {
     const listeners = this.listeners[eventName] || []
     listeners.filter(element => element === listener)
     this.listeners[eventName] = listeners
   }
 
-  emit(eventName: string, ...args: any[]) {
+  emit(eventName, ...args) {
     const listeners = this.listeners[eventName] || []
     listeners.forEach(f => f(...args))
   }
