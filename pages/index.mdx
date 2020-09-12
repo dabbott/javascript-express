@@ -11,7 +11,7 @@ Welcome to <LanguageName /> Express! <LanguageName /> is a versatile language fo
 
 ## About this guide
 
-This guide is intended for developers who know at least one other programming language well. We won't cover general programming concepts (e.g. _what is a variable?_), but rather <LanguageName />-specific concepts (e.g. _how do variables work in <LanguageName />?_).<Details condition={IS_TYPESCRIPT}> Since TypeScript is an extension of JavaScript, we'll be covering both together in this guide. If you'd prefer to learn non-typed JavaScript, instead head to [JavaScript Express](https://www.javascript.express).</Details>
+This guide is intended for developers who know at least one other programming language well. We won't cover general programming concepts (e.g. _what is a variable?_), but rather <LanguageName />-specific concepts (e.g. _how do variables work in <LanguageName />?_).<Details condition={IS_TYPESCRIPT}> Since TypeScript is an extension of JavaScript, we'll be covering both together in this guide. If you'd prefer to learn non-typed JavaScript, instead head to the JavaScript-only flavor of this site, [JavaScript Express](https://www.javascript.express).</Details>
 
 I hope you enjoy learning <LanguageName />. Most of this guide was written by me, [@dvnabbott](https://twitter.com/dvnabbott). Some pages may be written by other authors (listed at top of each page).
 
@@ -19,10 +19,10 @@ I hope you enjoy learning <LanguageName />. Most of this guide was written by me
 
 ## <LanguageName /> sandbox
 
-This guide uses an interactive sandbox, which can evaluate <LanguageName /> code and display console logs inline with the code. For example:
+This guide uses a web-based JavaScript sandbox, which can evaluate <LanguageName /> code samples and display console logs inline with the code. For example:
 
 <Example
-  code={`console.log("Hello, world!")`}
+  code={`console.log('Hello, world!')`}
 />
 
 ---
@@ -41,6 +41,11 @@ Since JavaScript has quirky features _and_ since they likely won't be removed, i
   <h2>TypeScript</h2>
   <p>JavaScript is <em>dynamically typed</em>, which means that type checking happens at runtime. This is convenient for small scripts, but for large apps it's often helpful to have type checking at compile-time.</p>
   <p>TypeScript is a language that extends JavaScript, adding syntax for type declarations and annotations. The TypeScript compiler can then perform compile-time type checking, before transforming the TypeScript code into JavaScript.</p>
+</Details>
+
+<Details condition={IS_JAVASCRIPT}>
+  <h2>Dynamic Typing</h2>
+  <p>JavaScript is <em>dynamically typed</em>, which means that type checking happens at runtime. Many developers see this as one of JavaScript's strengths. Some, however, prefer to have compile-time type checking. If you'd prefer compile-time type checking, consider heading to the TypeScript flavor of this site, <a href="https://www.typescript.express">TypeScript Express</a>. If you're not sure what which to use, I recommend continuing here with regular JavaScript for now.</p>
 </Details>
 
 <p><strong>Alright, let's dive in!</strong></p>

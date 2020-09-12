@@ -1,0 +1,51 @@
+---
+hidden: IS_TYPESCRIPT
+---
+
+# Environment
+
+JavaScript most often runs in the web browser or using the command line application, `node.js`.
+
+In this guide, we'll be using an embedded web-based sandbox for our examples. However, if you'd prefer to set up an environment on your computer and use your favorite text editor or IDE, here are a couple options.
+
+> There's no need to set up a local environment for this guide, so feel free to skip to the next section, [Types](/types).
+
+## HTML file
+
+The simplest way to get started with a local environment is by creating an HTML file on your computer. Create a file `example.html` somewhere on your computer, open it in your favorite code editor, and paste in the following code:
+
+<Example panes={['editor']} title={'example.html'} showTitle code={`<script>\n  console.log('Hello, world!')\n</script>`} />
+
+Save the file and open it in your web browser (probably by double clicking it). You should see a completely blank webpage.
+
+Next, open the JavaScript console. This is a built-in feature of web browsers, although it works a little differently in each browser. Here's a brief set of instructions for some common browsers:
+
+- **Chrome** - Go to `View > Developer > JavaScript Console`
+- **Firefox** - Go to `Tools > Web Developer > Web Console`
+- **Safari** - In `Preferences`, under the `Advanced` tab, enable the checkbox `Show Develop menu`. Then, `Develop > Show JavaScript Console`
+
+These instructions are different depending on your operating system and browser version, but if you have trouble finding it, a quick Google search for "open JavaScript console [browser name]" should bring up instructions.
+
+After opening it, you should see something like this (Safari) screenshot:
+
+![HTML page screenshot](/static/html-page-screenshot.png)
+
+The results of our `console.log` function call are printed at the bottom of the screen. If we change the file, we can refresh the browser to run our updated code.
+
+## Node.js
+
+`node.js` is a command line application for running JavaScript on your computer. You can download and install the application from [the node website](https://nodejs.org).
+
+Once downloaded, in the terminal, you can run JavaScript files with `node [filename]`.
+
+So for example, create a file `example.js` and paste in the following code:
+
+<Example panes={['editor']} title={'example.js'} showTitle code={`console.log('Hello, world!')`} />
+
+Save the file, and then in the terminal navigate to the same directory as the `example.js` file, and run `node example.js`.
+
+You should see `Hello, world!` print to the terminal.
+
+### Up next
+
+For the rest of this guide, any example code we use should work in both your web browser and `node.js`. With that, let's get started!

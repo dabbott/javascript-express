@@ -1,5 +1,6 @@
 {
   "order": [
+    "environment",
     "types",
     "syntax",
     "standard_library",

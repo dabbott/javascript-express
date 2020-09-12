@@ -34,7 +34,14 @@ export default class EditorConsole extends Component {
   }
 
   render() {
-    let { variant, panes = ['editor', 'player'], height, ...rest } = this.props
+    let {
+      variant,
+      panes = ['editor', 'player'],
+      height,
+      title,
+      showTitle,
+      ...rest
+    } = this.props
 
     const style = {
       ...(variant === 'slides'
@@ -105,7 +112,7 @@ export default class EditorConsole extends Component {
         workspaceCSS={variant === 'slides' ? slidesCSS : workspaceCSS}
         panes={panes}
         {...rest}
-        title={undefined}
+        title={showTitle ? title : undefined}
       />
     )
   }
