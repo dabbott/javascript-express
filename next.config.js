@@ -61,6 +61,7 @@ const withRawExampleLoader = nextConfig => ({
         IS_TYPESCRIPT: JSON.stringify(IS_TYPESCRIPT),
         IS_JAVASCRIPT: JSON.stringify(IS_JAVASCRIPT),
         LANGUAGE: JSON.stringify(LANGUAGE),
+        FILE_EXTENSION: JSON.stringify(IS_TYPESCRIPT ? '.ts' : '.js'),
       })
     )
 

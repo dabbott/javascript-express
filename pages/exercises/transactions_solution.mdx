@@ -2,6 +2,7 @@ import transactionsStarter from "../../examples/files/exercises/transactionsStar
 import transactions1 from "../../examples/files/exercises/transactions1.ts";
 import transactions2 from "../../examples/files/exercises/transactions2.ts";
 import transactions3 from "../../examples/files/exercises/transactions3.ts";
+import { removeEmptyLines } from '../../utils/format'
 
 # Transactions Solution
 
@@ -12,43 +13,43 @@ Here's one possible solution to the transactions exercise.
   workspacesTitle="Transactions Solution"
   workspaces={[
     {
-      title: "0. Starter code",
+      title: "Starter code",
       description: "Given a string of CSV data containing a list of transactions...",
       workspace: {
-        title: "index.ts",
-        initialTab: "index.ts",
-        entry: "index.ts",
-        files: { "index.ts": transactionsStarter },
+        title: "index" + FILE_EXTENSION,
+        initialTab: "index" + FILE_EXTENSION,
+        entry: "index" + FILE_EXTENSION,
+        files: { ["index" + FILE_EXTENSION]: transactionsStarter },
       },
     },
     {
-      title: "1. Parsing",
-      description: "Define a new `Transaction` type and parse the CSV data into an array of `Transaction`",
+      title: "Parsing",
+      description: (IS_TYPESCRIPT ? 'Define a new `Transaction` type and p' : 'P') + 'arse the CSV data into an array of ' + (IS_TYPESCRIPT ? `Transaction` : 'transaction objects'),
       workspace: {
-        title: "index.ts",
-        initialTab: "index.ts",
-        entry: "index.ts",
-        files: { "index.ts": [transactionsStarter, transactions1].join('\n') },
+        title: "index" + FILE_EXTENSION,
+        initialTab: "index" + FILE_EXTENSION,
+        entry: "index" + FILE_EXTENSION,
+        files: { ["index" + FILE_EXTENSION]: [transactionsStarter, removeEmptyLines(transactions1)].join('\n') },
       },
     },
     {
-      title: "2. Currencies",
+      title: "Currencies",
       description: "Print the name of each unique `currency` in the data set (e.g. `\"ETH, BTC\"`)",
       workspace: {
-        title: "index.ts",
-        initialTab: "index.ts",
-        entry: "index.ts",
-        files: { "index.ts": [transactionsStarter, transactions1, transactions2].join('\n') },
+        title: "index" + FILE_EXTENSION,
+        initialTab: "index" + FILE_EXTENSION,
+        entry: "index" + FILE_EXTENSION,
+        files: { ["index" + FILE_EXTENSION]: [transactionsStarter, removeEmptyLines(transactions1), transactions2].join('\n') },
       },
     },
     {
-      title: "3. Largest transactions",
+      title: "Largest transactions",
       description: "For each currency, print the `currency` and `value` of the transaction with the largest positive value for that currency (e.g. `\"ETH: 0.519, BTC: 1.137\"`)",
       workspace: {
-        title: "index.ts",
-        initialTab: "index.ts",
-        entry: "index.ts",
-        files: { "index.ts": [transactionsStarter, transactions1, transactions2, transactions3].join('\n') },
+        title: "index" + FILE_EXTENSION,
+        initialTab: "index" + FILE_EXTENSION,
+        entry: "index" + FILE_EXTENSION,
+        files: { ["index" + FILE_EXTENSION]: [transactionsStarter, removeEmptyLines(transactions1), transactions2, transactions3].join('\n') },
       },
     },
   ]}

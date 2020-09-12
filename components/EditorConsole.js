@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { WebPlayer } from 'react-guidebook'
+import { colors } from '../styles/theme'
 
 function countPlaygroundWidgets(code) {
   return (code.match(/console\.log/g) || []).length
@@ -56,15 +57,48 @@ export default class EditorConsole extends Component {
       panes = ['workspaces', ...panes]
     }
 
+    const baseStyles = {
+      workspacesButtonWrapper: {
+        backgroundColor: colors.primary,
+      },
+      workspacesRowActive: {
+        backgroundColor: colors.primary,
+        borderLeftColor: colors.primary,
+      },
+      workspacesRowTitle: {
+        color: '#333',
+      },
+      workspacesRowTitleActive: {
+        color: '#333',
+        fontWeight: '500',
+      },
+      workspacesDescription: {
+        backgroundColor: colors.primary,
+      },
+      workspacesDescriptionText: {
+        color: '#333',
+      },
+      workspacesPane: {
+        width: '25%',
+      },
+      tabText: {
+        color: '#BBB',
+        borderBottomColor: colors.primary,
+      },
+      tabTextActive: {
+        color: '#333',
+        borderBottomColor: colors.primary,
+      },
+      playerPane: {
+        display: 'none',
+      },
+    }
+
     return (
       <WebPlayer
         fullscreen={true}
         style={style}
-        styles={{
-          playerPane: {
-            display: 'none',
-          },
-        }}
+        styles={baseStyles}
         width={0}
         playground={{ enabled: true }}
         typescript={{ enabled: true }}
@@ -79,10 +113,6 @@ export default class EditorConsole extends Component {
 
 const workspaceCSS = `
 .cm-s-react {
-  color: #777;
-}
-
-.cm-s-react span.cm-def, .cm-s-react span.cm-attribute {
   color: #333;
 }
 
