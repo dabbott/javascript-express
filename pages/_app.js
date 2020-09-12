@@ -49,13 +49,13 @@ export default class MyApp extends App {
       )
     }
 
-    // if (slug.endsWith('playgrounds')) {
-    //   return (
-    //     <ThemeProvider theme={theme}>
-    //       <Component {...pageProps} />
-    //     </ThemeProvider>
-    //   )
-    // }
+    if (slug.endsWith('playground')) {
+      return (
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      )
+    }
 
     const node = findNodeBySlug(guidebook, slug)
 

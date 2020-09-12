@@ -40,7 +40,9 @@ export default class EditorConsole extends Component {
         ? { flex: '1' }
         : {
             height: height
-              ? `${height}px`
+              ? typeof height === 'number'
+                ? `${height}px`
+                : height
               : rest.code
                 ? codeHeight(rest.code)
                 : 400,
@@ -58,10 +60,15 @@ export default class EditorConsole extends Component {
       <WebPlayer
         fullscreen={true}
         style={style}
+        styles={{
+          playerPane: {
+            display: 'none',
+          },
+        }}
         width={0}
         playground={{ enabled: true }}
         typescript={{ enabled: true }}
-        workspaceCSS={variant === 'slides' ? slidesCSS : undefined}
+        workspaceCSS={variant === 'slides' ? slidesCSS : workspaceCSS}
         panes={panes}
         {...rest}
         title={undefined}
@@ -69,6 +76,28 @@ export default class EditorConsole extends Component {
     )
   }
 }
+
+const workspaceCSS = `
+.cm-s-react {
+  color: #777;
+}
+
+.cm-s-react span.cm-def, .cm-s-react span.cm-attribute {
+  color: #333;
+}
+
+.cm-s-react span.cm-keyword {
+  color: rgb(59, 108, 212);
+}
+
+.cm-s-react span.cm-string, .cm-s-react span.cm-string-2, .cm-s-react span.cm-tag {
+  color: #2e9f74;
+}
+
+.cm-s-react span.cm-bracket {
+  color: #555;
+}
+`
 
 const slidesCSS = `
 .CodeMirror {
