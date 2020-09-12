@@ -6,6 +6,7 @@ export default function Playground() {
     <EditorConsole
       height={'100vh'}
       code={`console.log('Hello, playgrounds!')`}
+      sharedEnvironment={true}
     />
   )
 }
