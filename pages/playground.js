@@ -1,6 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import EditorConsole from '../components/EditorConsole'
 
+const targetOrigin =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : IS_TYPESCRIPT
+      ? 'https://typescript.express'
+      : 'https://javascript.express'
+
 const getCodeParameter = () => {
   const params = window.location.search.slice(1).split('&')
 
@@ -33,6 +40,7 @@ export default function Playground() {
 
   return (
     <EditorConsole
+      targetOrigin={targetOrigin}
       height={'100vh'}
       code={code || `console.log('Hello, playgrounds!')`}
       sharedEnvironment={true}
@@ -43,7 +51,6 @@ export default function Playground() {
         debounceDuration: 200,
         instrumentExpressionStatements: true,
       }}
-      targetOrigin={'*'}
     />
   )
 }
