@@ -1,32 +1,7 @@
 import React, { Component } from 'react'
 
-import { WebPlayer } from 'react-guidebook'
+import { WebPlayer, Playgrounds } from 'react-guidebook'
 import { colors } from '../styles/theme'
-
-function countPlaygroundWidgets(code) {
-  return (code.match(/console\.log/g) || []).length
-}
-
-function codeHeight(code) {
-  const headerHeight = 40
-  const footerHeight = 40
-  const lineHeight = 20
-  const padding = 4
-  const visualSpacer = 20 // To make things look nicer
-  const widgetHeight = 30
-  const widgetsHeight = countPlaygroundWidgets(code) * widgetHeight
-  const codeHeight = code.split('\n').length * lineHeight
-
-  return (
-    headerHeight +
-    padding +
-    codeHeight +
-    widgetsHeight +
-    visualSpacer +
-    padding +
-    footerHeight
-  )
-}
 
 export default class EditorConsole extends Component {
   shouldComponentUpdate() {
@@ -52,7 +27,7 @@ export default class EditorConsole extends Component {
                 ? `${height}px`
                 : height
               : rest.code
-                ? codeHeight(rest.code)
+                ? Playgrounds.measureCodeHeight(rest.code)
                 : 400,
           }),
       flex: '1 1 0%',
@@ -86,7 +61,7 @@ export default class EditorConsole extends Component {
         color: '#333',
       },
       workspacesPane: {
-        width: '25%',
+        flex: '0 0 30%',
       },
       tabText: {
         color: '#BBB',
@@ -103,13 +78,12 @@ export default class EditorConsole extends Component {
 
     return (
       <WebPlayer
-        fullscreen={true}
         style={style}
+        preset="javascript"
+        fullscreen={true}
         styles={baseStyles}
-        width={0}
-        playground={{ enabled: true, renderReactElements: true }}
         typescript={{ enabled: IS_TYPESCRIPT }}
-        workspaceCSS={variant === 'slides' ? slidesCSS : workspaceCSS}
+        css={variant === 'slides' ? Playgrounds.slidesCSS : undefined}
         panes={panes}
         {...rest}
         title={showTitle ? title : undefined}
@@ -117,49 +91,3 @@ export default class EditorConsole extends Component {
     )
   }
 }
-
-const workspaceCSS = `
-.cm-s-react {
-  color: #333;
-}
-
-.cm-s-react span.cm-keyword {
-  color: rgb(59, 108, 212);
-}
-
-.cm-s-react span.cm-string, .cm-s-react span.cm-string-2, .cm-s-react span.cm-tag {
-  color: #2e9f74;
-}
-
-.cm-s-react span.cm-bracket {
-  color: #555;
-}
-`
-
-const slidesCSS = `
-.CodeMirror {
-  background-color: rgb(250,250,250);
-}
-
-.CodeMirror-lines {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.cm-s-react {
-  font-size: 18px;
-  line-height: 26px;
-}
-
-.cm-s-react .CodeMirror-linenumber {
-  display: none;
-}
-
-.cm-s-react .CodeMirror-gutters {
-  background: rgb(250,250,250);
-  padding-left: 12px;
-  padding-right: 0px;
-  border-left: 0px;
-  border-right: 0px;
-}
-`

@@ -4,5 +4,8 @@ console.log(myNumber)
 `
 
 export default {
-  files: [['index.js', index], ['myNumber.js', `module.exports = 42\n`]],
+  files: {
+    ['index' + FILE_EXTENSION]: index,
+    ['myNumber' + FILE_EXTENSION]: `module.exports = 42\n`,
+  },
 }

@@ -4,5 +4,10 @@ console.log(myNumber)
 `
 
 export default {
-  files: [['index.js', index], ['myNumber.js', `export default 42\n`]],
+  initialTab: 'index.ts',
+  entry: 'index.ts',
+  files: {
+    ['index' + FILE_EXTENSION]: index,
+    ['myNumber' + FILE_EXTENSION]: `export default 42\n`,
+  },
 }

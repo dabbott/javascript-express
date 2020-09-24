@@ -9,5 +9,8 @@ export const myString = 'Hello, world!'
 `
 
 export default {
-  files: [['index.js', index], ['myValues.js', myValues]],
+  files: {
+    ['index' + FILE_EXTENSION]: index,
+    ['myValues' + FILE_EXTENSION]: myValues,
+  },
 }
