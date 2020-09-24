@@ -5,8 +5,8 @@ const targetOrigin =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : IS_TYPESCRIPT
-      ? 'https://typescript.express'
-      : 'https://javascript.express'
+      ? 'https://www.typescript.express'
+      : 'https://www.javascript.express'
 
 const getCodeParameter = () => {
   const params = window.location.search.slice(1).split('&')
