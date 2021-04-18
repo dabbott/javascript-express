@@ -1,21 +1,40 @@
-const webpack = require('webpack')
-const withImages = require('next-images')
-
 const LANGUAGE_TYPESCRIPT = process.env.LANGUAGE_TYPESCRIPT
 const IS_TYPESCRIPT = !!LANGUAGE_TYPESCRIPT
 const IS_JAVASCRIPT = !LANGUAGE_TYPESCRIPT
 const LANGUAGE = LANGUAGE_TYPESCRIPT ? 'TypeScript' : 'JavaScript'
 
+const webpack = require('webpack')
+
+// Common
+
+const withImages = require('next-images')
+const slug = require('rehype-slug')
+const generateGuidebook = require('generate-guidebook/next')
+const pkg = LANGUAGE_TYPESCRIPT
+  ? require('./config/typescript-express.json')
+  : require('./config/javascript-express.json')
+
+const { locales, defaultLocale } = pkg.i18n
+
 console.log(`Building for language: ${LANGUAGE}`)
 
-const withGuidebook = require('generate-guidebook/next')({
-  guidebookDirectory: './pages',
-  guidebookModulePath: './guidebook.js',
-  variables: { IS_TYPESCRIPT, IS_JAVASCRIPT, LANGUAGE },
-})
+const withGuidebooks = nextConfig =>
+  locales.reduce(
+    (nextConfig, locale) =>
+      generateGuidebook({
+        guidebookDirectory:
+          locale === defaultLocale ? './pages' : `./pages/${locale}`,
+        guidebookModulePath: `./guidebook-${locale}.js`,
+        variables: { IS_TYPESCRIPT, IS_JAVASCRIPT, LANGUAGE },
+      })(nextConfig),
+    nextConfig
+  )
 
 const withMDX = require('next-mdx-frontmatter')({
   extension: /\.mdx?$/,
+  MDXOptions: {
+    rehypePlugins: [slug],
+  },
 })
 
 const rawFileRE = /examples(\/|\\)files(\/|\\).*$/
@@ -74,10 +93,10 @@ const withRawExampleLoader = nextConfig => ({
 })
 
 module.exports = withRawExampleLoader(
-  withGuidebook(
+  withGuidebooks(
     withImages(
       withMDX({
-        pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+        pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
       })
     )
   )

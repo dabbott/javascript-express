@@ -1,0 +1,34 @@
+{
+  "title": "JavaScript Express",
+  "description": "Learn JavaScript through interactive examples.",
+  "location": {
+    "host": "www.javascript.express"
+  },
+  "author": {
+    "twitter": "dvnabbott"
+  },
+  "favicons": [
+    {
+      "type": "image/x-icon",
+      "path": "/static/favicon.ico"
+    },
+    {
+      "type": "image/png",
+      "path": "/static/favicon.png"
+    }
+  ],
+  "github": {
+    "user": "dabbott",
+    "repo": "javascript-express"
+  },
+  "googleAnalytics": {
+    "trackingId": "UA-77053427-4"
+  },
+  "facebook": {
+    "appId": "907755649360812"
+  },
+  "i18n": {
+    "locales": ["en"],
+    "defaultLocale": "en"
+  }
+}
