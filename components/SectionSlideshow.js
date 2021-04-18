@@ -1,6 +1,6 @@
 import React from 'react'
 import { findNodeBySlug, requireSlides } from 'react-guidebook'
-import guidebook from '../guidebook'
+import guidebook from '../guidebook-en'
 import SpectacleSlideshow from './SpectacleSlideshow'
 
 function requireModule(id) {

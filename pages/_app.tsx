@@ -30,7 +30,9 @@ import defaultTheme from '../styles/theme'
 import EditorConsole from '../components/EditorConsole'
 import logo from '../images/logo.svg'
 import { searchPages, searchTextMatch } from '../utils/search'
-const pkg = IS_JAVASCRIPT ? require('../config/javascript-express.json') : require('../config/typescript-express.json')
+const pkg = IS_JAVASCRIPT 
+  ? require('../config/javascript-express.json') 
+  : require('../config/typescript-express.json')
 import type { TreeNode } from 'generate-guidebook'
 
 const config: GuidebookConfig = pkg ?? {}
@@ -67,7 +69,6 @@ export default function GuidebookApp({
       ...PageComponents,
       Example: EditorConsole,
       Author,
-      // Details: ({ children }: { children: React.ReactNode }) => children,
       Details: ({ children, condition }: { children: React.ReactNode, condition: boolean }) => condition !== false && children,
       LanguageName: () => (IS_JAVASCRIPT ? 'JavaScript' : 'TypeScript'),
       a: LinkComponent,
