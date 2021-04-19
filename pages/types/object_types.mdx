@@ -3,9 +3,9 @@ import objectType from '../../examples/files/types/objectType'
 import functionType from '../../examples/files/types/functionType'
 import intendedPurpose from '../../examples/files/types/intendedPurpose'
 
-Everything that isn't a primitive type is an object type. 
+Everything that isn't a primitive type is an object type.
 
-Object types are **mutable** and passed to functions **by reference** (i.e. modifying the value within a function modifies original).
+Object types are **mutable** and passed to functions **by reference** (i.e. modifying the value within a function modifies the original).
 
 There are 3 extremely common built-in object types: `Object`, `Array`, and `Function`.
 
@@ -19,10 +19,7 @@ Keys can only be strings (or symbols)<Details condition={IS_TYPESCRIPT}>, althou
 
 > Objects are used extensively throughout JavaScript, both in the standard library and implementation of OOP (classes, inheritance, etc).
 
-<Example
-  title={"Objects"}
-  code={objectType}
-/>
+<Example title={'Objects'} code={objectType} />
 
 ---
 
@@ -32,10 +29,7 @@ The `Array` class is a subclass of `Object` that handles integer keys specially.
 
 We use array literal syntax to declare arrays:
 
-<Example   
-  title={"Arrays"}
-  code={arrayType}
-/>
+<Example title={'Arrays'} code={arrayType} />
 
 ---
 
@@ -48,10 +42,7 @@ There are two ways to declare functions:
 - The `function` keyword
 - Arrow (`=>`) function expressions
 
-<Example
-  title={"Functions"}
-  code={functionType}
-/>
+<Example title={'Functions'} code={functionType} />
 
 ---
 
@@ -63,7 +54,4 @@ However, we _generally_ shouldn't use them like this it's not their intended pur
 
 > There are some standard library methods and 3rd party frameworks that do this, so it's more a suggestion than a rule.
 
-<Example
-  title={"Intended purposes"}
-  code={intendedPurpose}
-/>
+<Example title={'Intended purposes'} code={intendedPurpose} />
